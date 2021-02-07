@@ -12,7 +12,7 @@ function ans_check(ans, reply) {
     let hit = 0;
     let brow = 0;
     for (let i = 0; i < n; i++) {
-        if (ans[i] === reply[i]) {hit++;}
+        if (ans[i] === reply[i]) hit++;
         else if (ans.indexOf(reply[i]) >= 0) brow++;
     }
     return [hit, brow];
