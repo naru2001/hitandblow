@@ -15,7 +15,7 @@ function $(id) {
   return document.getElementById(id);
 }
 
-// 画像読み込み
+// 画像読み込み関数
 function loadImage(fname, onload) {
   var image = new Image();
   image.src = fname;
@@ -23,13 +23,18 @@ function loadImage(fname, onload) {
   return image;
 }
 
-// ゲーム開始画面描画
-function startCanvas() {
+// ロゴ画像読み込み
+function load_logo(){
   // 題名
   var logo_src = "menu_logo.png";
   logo_image = loadImage(logo_src);
-  ctx.drawImage(logo_image, 0, 0, 600, 200);
+  logo_image.onload = function(){
+    ctx.drawImage(logo_image, 0, 0, 600, 200);
+  }
+}
 
+// ゲーム開始画面描画
+function startCanvas() {
   // 説明文
   draw_filltext("遊ぶゲームモードを選択してください.", "30px gothic", "black", 60, 200);
 
@@ -63,7 +68,7 @@ function startCanvas() {
   draw_filltext("ランキング", "35px gothic", "white", 290, 565);
 
   // 音量設定ボタン
-  
+
 }
 
 // 角丸四角形作成関数
@@ -123,5 +128,6 @@ window.onload = function () {
 
   ctx.scale(scale, scale);
 
+  load_logo();
   startCanvas();
 }
