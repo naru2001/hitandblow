@@ -1,0 +1,6 @@
+canvas#gameCanvas{
+  background-color: rgb(234, 255, 116);
+  border: aliceblue 20px;
+  border-radius: 15px;
+  border-color: rgb(143, 86, 0);
+}
