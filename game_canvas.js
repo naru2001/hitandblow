@@ -1,5 +1,5 @@
 /*
-Hit and Brow ver0.0.1
+Hit and Blow ver0.0.1
 Copyright © naru2001, nkgw-marronnier 2021
 GitHub: https://github.com/naru2001
 GitHub: https://github.com/nkgw-marronnier
@@ -67,7 +67,7 @@ function startCanvas() {
   draw_roundRect(280, 510, 200, 80, 15, "brown", "white");
   draw_filltext("ランキング", "35px gothic", "white", 290, 565);
 
-  //share
+  // 共有ボタン
   draw_roundRect(520, 510, 80, 80, 15, "#00bfff", "white");
   draw_filltext("共有", "28px gothic", "white", 532, 561);
 
