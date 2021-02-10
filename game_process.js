@@ -1,4 +1,4 @@
-function make_number(n) {
+function make_number(n) { //Fisher–Yates shuffle
     const num_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     for (let i = num_array.length - 1; i >= 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -17,3 +17,20 @@ function ans_check(ans, reply) {
     }
     return [hit, brow];
 }
+
+function onClick(e) {
+    var rect = e.target.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    check_coord(x,y);
+}
+
+function check_coord(x,y){
+    //座標の判定する
+    return
+}
+
+window.addEventListener('load', function () {
+    var canvas = $("gameCanvas");
+    canvas.addEventListener('click', onClick, false);
+})

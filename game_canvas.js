@@ -9,7 +9,6 @@ Copyright © nkgw-marronnier 2021
 GitHub: https://github.com/nkgw-marronnier
 */
 
-
 // DOM要素を返す
 function $(id) {
   return document.getElementById(id);
