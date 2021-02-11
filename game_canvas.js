@@ -152,10 +152,10 @@ function draw_roundRect(
   }
 }
 
-// 横線描画関数
+// 直線描画関数
 function draw_line(start_x, start_y, stop_x, stop_y, width, s_style, canvas_n) {
   if (canvas_n == "back") {
-    b_ctx.strokStyle = s_style;
+    b_ctx.strokeStyle = s_style;
     b_ctx.lineWidth = width;
     b_ctx.beginPath();
     b_ctx.moveTo(start_x, start_y);
@@ -163,7 +163,7 @@ function draw_line(start_x, start_y, stop_x, stop_y, width, s_style, canvas_n) {
     b_ctx.closePath();
     b_ctx.stroke();
   } else {
-    ctx.strokStyle = s_style;
+    ctx.strokeStyle = s_style;
     ctx.lineWidth = width;
     ctx.beginPath();
     ctx.moveTo(start_x, start_y);

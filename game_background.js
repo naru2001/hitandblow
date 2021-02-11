@@ -16,6 +16,7 @@ var back_time = 0;
 var back_time_ = 0;
 var l = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450];
 var num_mas = [];
+var color_n = 0;
 
 for (var i = l.length - 1; i > 0; i--) {
   var k = Math.floor(Math.random() * (i + 1));
@@ -75,6 +76,23 @@ function lineMove() {
   }
 }
 
+function colorVariety(late_c) {
+  if (late_c == null) {
+    late_c = 0;
+  }
+  var latency_c = late_c;
+  color_n = color_n + latency_c;
+
+  if (color_n > 360) {
+    color_n = 0;
+  }
+
+  var color_v = "hsl(" + color_n + ", 55%, 55%)";
+  color_n = color_n + 0.5;
+
+  return [color_v, color_n];
+}
+
 function backgroundDraw() {
   backNumber();
   lineMove();
@@ -82,19 +100,26 @@ function backgroundDraw() {
   for (var i = 0; i < 18; i++) {
     var nX = num_mas[i][0];
     var nY = num_mas[i][1];
-    draw_filltext(back_number[i], "150px gothic", "black", nX, nY, "back");
+    draw_filltext(
+      back_number[i],
+      "150px gothic",
+      colorVariety(60)[0],
+      nX,
+      nY,
+      "back"
+    );
   }
 
-  draw_line(l[0], 50, 1000 + l[0], 50, 4, "orange", "back");
-  draw_line(l[1], 200, 1000 + l[1], 200, 4, "orange", "back");
-  draw_line(l[2], 350, 1000 + l[2], 350, 4, "orange", "back");
-  draw_line(l[3], 500, 1000 + l[3], 500, 4, "orange", "back");
-  draw_line(l[4], 650, 1000 + l[4], 650, 4, "orange", "back");
-  draw_line(50, l[5], 50, 1000 + l[5], 4, "orange", "back");
-  draw_line(200, l[6], 200, 1000 + l[6], 4, "orange", "back");
-  draw_line(350, l[7], 350, 1000 + l[7], 4, "orange", "back");
-  draw_line(500, l[8], 500, 1000 + l[8], 4, "orange", "back");
-  draw_line(650, l[9], 650, 1000 + l[9], 4, "orange", "back");
+  draw_line(l[0], 50, 1000 + l[0], 50, 4, colorVariety(0)[0], "back");
+  draw_line(l[1], 200, 1000 + l[1], 200, 4, colorVariety(50)[0], "back");
+  draw_line(l[2], 350, 1000 + l[2], 350, 4, colorVariety(30)[0], "back");
+  draw_line(l[3], 500, 1000 + l[3], 500, 4, colorVariety(100)[0], "back");
+  draw_line(l[4], 650, 1000 + l[4], 650, 4, colorVariety(200)[0], "back");
+  draw_line(50, l[5], 50, 1000 + l[5], 4, colorVariety(0)[0], "back");
+  draw_line(200, l[6], 200, 1000 + l[6], 4, colorVariety(30)[0], "back");
+  draw_line(350, l[7], 350, 1000 + l[7], 4, colorVariety(50)[0], "back");
+  draw_line(500, l[8], 500, 1000 + l[8], 4, colorVariety(20)[0], "back");
+  draw_line(650, l[9], 650, 1000 + l[9], 4, colorVariety(0)[0], "back");
 }
 
 function backgroundTurn() {

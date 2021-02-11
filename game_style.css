@@ -18,7 +18,7 @@ GitHub: https://github.com/nkgw-marronnier
 canvas#backgroundCanvas {
   position: absolute;
   padding: 0px;
-  margin: 0px;
+  margin: 20px;
   border-radius: 15px;
   -webkit-filter: blur(2px);
   -moz-filter: blur(2px);
@@ -37,8 +37,5 @@ canvas#gameCanvas {
   margin: 0px;
   background-color: rgb(255, 255, 255, 0.6);
   border-radius: 15px;
-  top: -5px;
-  left: -5px;
-  right: 5px;
-  bottom: 5px;
+  border: solid 10px rgb(220, 220, 220);
 }
