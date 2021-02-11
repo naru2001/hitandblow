@@ -2,18 +2,26 @@
 <html lang="ja">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Hit and Blow</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="game_canvas.js" charset="UTF-8"></script>
-	<script src="game_process.js" charset="UTF-8"></script>
-	<link rel="stylesheet" href="game_style.css" charset="UTF-8">
-	<!-- game_process.jsはHTML処理後に読み込む(defer) -->
-	<script src="" defer></script>
+  <meta charset="UTF-8">
+  <title>Hit and Blow</title>
+  <meta name="author" content="naru2001, nkgw-marronnier">
+  <meta name="format-detection" content="telephone=no, email=no, address=no">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex, notranslate">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 背景描画 -->
+  <script src="game_background.js" charset="UTF-8"></script>
+  <!-- ゲーム画面描画 -->
+  <script src="game_canvas.js" charset="UTF-8"></script>
+  <!-- ゲーム処理 -->
+  <script src="game_process.js" charset="UTF-8"></script>
+  <link rel="stylesheet" href="game_style.css" charset="UTF-8">
 </head>
 
 <body>
-	<canvas id="gameCanvas"></canvas>
+  <div class="game">
+    <canvas id="backgroundCanvas"></canvas>
+    <canvas id="gameCanvas"></canvas>
+  </div>
 </body>
 
 </html>

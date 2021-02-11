@@ -1,6 +1,44 @@
-canvas#gameCanvas{
-  background-color: rgb(234, 255, 116);
-  border-radius: 15px;
-  border-color: rgb(143, 86, 0);
+/*
+Hit and Blow ver0.0.1
+Copyright © naru2001, nkgw-marronnier 2021
+GitHub: https://github.com/naru2001
+GitHub: https://github.com/nkgw-marronnier
+
+game_style.css
+Copyright © nkgw-marronnier 2021
+GitHub: https://github.com/nkgw-marronnier
+*/
+
+/* ゲーム総合描画領域 */
+.game {
+  position: relative;
 }
 
+/* 背景描画領域 */
+canvas#backgroundCanvas {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 15px;
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  overflow: hidden;
+}
+
+/* ゲーム描画領域 */
+canvas#gameCanvas {
+  /*背景デバッグ用*/
+  /*visibility: hidden;*/
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(255, 255, 255, 0.6);
+  border-radius: 15px;
+  top: -5px;
+  left: -5px;
+  right: 5px;
+  bottom: 5px;
+}
