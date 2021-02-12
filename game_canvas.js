@@ -135,10 +135,6 @@ function select_num(select_){
   }
 }
 
-function ans_result(){
-  ans_check(gamemode, ans_p);
-}
-
 // 角丸四角形作成関数
 /*
 okikuさんのブログを参考

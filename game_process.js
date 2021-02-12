@@ -16,15 +16,16 @@ function eval_Ineq(a, b, n) {
     return a <= n && n <= b;
 }
 
-function ans_check(ans, reply) {
-    let n = ans.length;
+function ans_check() {
+    let n = ans_array.length;
     let hit = 0;
     let brow = 0;
     for (let i = 0; i < n; i++) {
-        if (ans[i] === reply[i]) hit++;
-        else if (ans.indexOf(reply[i]) >= 0) brow++;
+        if (ans_array[i] === rep_array[i]) hit++;
+        else if (ans_array.indexOf(rep_array[i]) >= 0) brow++;
     }
-    return [hit, brow];
+    console.log([hit, brow]); // canvasに渡す
+    rep_array=[];
 }
 
 function onClick(e) {
@@ -35,24 +36,27 @@ function onClick(e) {
     //console.log(x, y);
 }
 
-function full_check(array) {
+function full_check() {
+    if (rep_array.length === digit) {
+        ans_check(ans_array, rep_array);
+    }
 }
 function check_coord(x, y) {
     if (flag == 0) {
         if (eval_Ineq(50.0, 200.0, x) && eval_Ineq(250.0, 450.0, y)) {
             flag = 1;
-            digit=3;
-            ans_array=make_number(3);
+            digit = 3;
+            ans_array = make_number(3);
             gameplayCanvas(3);
         } else if (eval_Ineq(250.0, 400.0, x) && eval_Ineq(250.0, 450.0, y)) {
             flag = 1;
-            digit=4;
-            ans_array=make_number(4);
+            digit = 4;
+            ans_array = make_number(4);
             gameplayCanvas(4);
         } else if (eval_Ineq(450.0, 600.0, x) && eval_Ineq(250.0, 450.0, y)) {
             flag = 1;
-            digit=5;
-            ans_array=make_number(5);
+            digit = 5;
+            ans_array = make_number(5);
             gameplayCanvas(5);
         } else if (eval_Ineq(50.0, 250.0, x) && eval_Ineq(510.0, 590.0, y)) {
             //console.log("rule");
@@ -67,45 +71,57 @@ function check_coord(x, y) {
         if (eval_Ineq(300.0, 380.0, x) && eval_Ineq(260.0, 340.0, y)) {
             console.log(1);
             rep_array.push(1);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(400.0, 480.0, x) && eval_Ineq(260.0, 340.0, y)) {
             console.log(2);
             rep_array.push(2);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(500.0, 580.0, x) && eval_Ineq(260.0, 340.0, y)) {
             console.log(3);
             rep_array.push(3);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(300.0, 380.0, x) && eval_Ineq(350.0, 430.0, y)) {
             console.log(4);
             rep_array.push(4);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(400.0, 480.0, x) && eval_Ineq(350.0, 430.0, y)) {
             console.log(5);
             rep_array.push(5);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(500.0, 580.0, x) && eval_Ineq(350.0, 430.0, y)) {
             console.log(6);
             rep_array.push(6);
+            select_num(rep_array);
+
             flag = 1;
         } else if (eval_Ineq(300.0, 380.0, x) && eval_Ineq(440.0, 520.0, y)) {
             console.log(7);
             rep_array.push(7);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(400.0, 480.0, x) && eval_Ineq(440.0, 520.0, y)) {
             console.log(8);
             rep_array.push(8);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(500.0, 580.0, x) && eval_Ineq(440.0, 520.0, y)) {
             console.log(9);
             rep_array.push(9);
+            select_num(rep_array);
             flag = 1;
         } else if (eval_Ineq(300.0, 580.0, x) && eval_Ineq(530.0, 610.0, y)) {
             console.log(0);
             rep_array.push(0);
+            select_num(rep_array);
             flag = 1;
         }
-        console.log(rep_array,ans_array);
+        full_check();
+        console.log(rep_array, ans_array);
     }
 }
 
