@@ -25,7 +25,7 @@ function ans_check() {
         else if (ans_array.indexOf(rep_array[i]) >= 0) brow++;
     }
     console.log([hit, brow]); // canvasに渡す
-    rep_array=[];
+    rep_array = [];
 }
 
 function onClick(e) {
@@ -41,6 +41,7 @@ function full_check() {
         ans_check(ans_array, rep_array);
     }
 }
+
 function check_coord(x, y) {
     if (flag == 0) {
         if (eval_Ineq(50.0, 200.0, x) && eval_Ineq(250.0, 450.0, y)) {
@@ -97,7 +98,6 @@ function check_coord(x, y) {
             console.log(6);
             rep_array.push(6);
             select_num(rep_array);
-
             flag = 1;
         } else if (eval_Ineq(300.0, 380.0, x) && eval_Ineq(440.0, 520.0, y)) {
             console.log(7);
