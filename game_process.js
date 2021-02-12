@@ -24,7 +24,7 @@ function ans_check() {
         if (ans_array[i] === rep_array[i]) hit++;
         else if (ans_array.indexOf(rep_array[i]) >= 0) brow++;
     }
-    console.log([hit, brow]); // canvasに渡す
+    hitblow(hit,brow); // canvasに渡す
     rep_array = [];
 }
 
