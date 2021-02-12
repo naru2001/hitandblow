@@ -7,7 +7,7 @@ function make_number(n) { //Fisher–Yates shuffle
     return num_array.slice(0, n);
 }
 
-function eval_Ineq(a, b, n) { //欲しかった
+function eval_Ineq(a, b, n) {
     return a <= n && n <= b;
 }
 
@@ -31,16 +31,24 @@ function onClick(e) {
 }
 
 function check_coord(x, y) {
-    if (50.0 <= x <= 200.0 && 250.0 <= y <= 450.0) {
+    if (eval_Ineq(50.0, 200.0, x) && eval_Ineq(250.0, 450.0, y)) {
         console.log(3);
     }
-    else if (250.0 <= x <= 400.0 && 250.0 <= y <= 450.0) {
+    else if (eval_Ineq(250.0, 400.0, x) && eval_Ineq(250.0, 450.0, y)) {
         console.log(4);
     }
-    else if (450.0 <= x <= 600.0 && 250.0 <= y <= 450.0) {
+    else if (eval_Ineq(450.0, 600.0, x) && eval_Ineq(250.0, 450.0, y)) {
         console.log(5);
     }
-    return
+    else if (eval_Ineq(50.0, 250.0, x) && eval_Ineq(510.0, 590.0, y)) {
+        console.log("rule");
+    }
+    else if (eval_Ineq(280.0, 480.0, x) && eval_Ineq(510.0, 590.0, y)) {
+        console.log("rank");
+    }
+    else if (eval_Ineq(520.0, 600.0, x) && eval_Ineq(510.0, 590.0, y)) {
+        console.log("share");
+    }
 }
 
 window.addEventListener('load', function () {
