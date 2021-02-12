@@ -126,6 +126,6 @@ function check_coord(x, y) {
 }
 
 window.addEventListener("load", function () {
-    var canvas = $("gameCanvas");
+    var canvas = $("gamenumberCanvas");
     canvas.addEventListener("click", onClick, false);
 });
