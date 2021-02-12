@@ -10,7 +10,7 @@ GitHub: https://github.com/nkgw-marronnier
 */
 
 var number = [];
-var gamemode = 0;
+var gamemode = 3;
 
 // DOM要素を返す
 function $(id) {
@@ -86,6 +86,7 @@ function startCanvas() {
 function gameplayCanvas(num){
   // 描画初期化
   ctx.clearRect(0, 0, 650, 650);
+
   gamemode = num;
 
   for(var i = 0; i < gamemode; i++){
@@ -114,22 +115,27 @@ function gameplayCanvas(num){
   draw_roundRect(300, 530, 280, 80, 15, "orange", "white", "game");
   draw_filltext(0, "80px gothic", "white", 415, 600, "game");
 
-  console.log(number);
+  //console.log(number);
 
-  //select_num();
+  select_num();
 }
 
 function select_num(select_){
-  var select_n = select_.length;
+  n_ctx.clearRect(0, 0, 650, 650);
+  var select = select_;
+  if(select == null){
+    select = [];
+  }
+  var select_n = select.length;
   for(var i = 0; i < gamemode; i++){
     if(gamemode == 3 && select_n > 0){
-      draw_filltext(select_[i], "130px gothic", "black", 75+200*i, 180, "game");
+      draw_filltext(select[i], "130px gothic", "black", 75+200*i, 180, "gamenum");
       select_n--;
     }else if(gamemode == 4 && select_n > 0){
-      draw_filltext(select_[i], "130px gothic", "black", 60+150*i, 180, "game");
+      draw_filltext(select[i], "130px gothic", "black", 60+150*i, 180, "gamenum");
       select_n--;
     }else if(gamemode == 5 && select_n > 0){
-      draw_filltext(select_[i], "130px gothic", "black", 45+120*i, 180, "game");
+      draw_filltext(select[i], "130px gothic", "black", 45+120*i, 180, "gamenum");
       select_n--;
     }
   }
@@ -177,7 +183,7 @@ function draw_roundRect(
     b_ctx.closePath();
     b_ctx.stroke();
     b_ctx.fill();
-  } else {
+  } else if(canvas_n == "game"){
     ctx.beginPath();
     ctx.lineWidth = 5;
     ctx.strokeStyle = s_color;
@@ -204,6 +210,33 @@ function draw_roundRect(
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
+  }else{
+    n_ctx.beginPath();
+    n_ctx.lineWidth = 5;
+    n_ctx.strokeStyle = s_color;
+    n_ctx.fillStyle = f_color;
+    n_ctx.moveTo(x, y + radius);
+    n_ctx.arc(
+      x + radius,
+      y + height - radius,
+      radius,
+      Math.PI,
+      Math.PI * (1 / 2),
+      true
+    );
+    n_ctx.arc(
+      x + width - radius,
+      y + height - radius,
+      radius,
+      Math.PI * (1 / 2),
+      0,
+      1
+    );
+    n_ctx.arc(x + width - radius, y + radius, radius, 0, Math.PI * (3 / 2), 1);
+    n_ctx.arc(x + radius, y + radius, radius, Math.PI * (3 / 2), Math.PI, 1);
+    n_ctx.closePath();
+    n_ctx.stroke();
+    n_ctx.fill();
   }
 }
 
@@ -217,7 +250,7 @@ function draw_line(start_x, start_y, stop_x, stop_y, width, s_style, canvas_n) {
     b_ctx.lineTo(stop_x, stop_y);
     b_ctx.closePath();
     b_ctx.stroke();
-  } else {
+  } else if(canvas_n == "game") {
     ctx.strokeStyle = s_style;
     ctx.lineWidth = width;
     ctx.beginPath();
@@ -225,6 +258,14 @@ function draw_line(start_x, start_y, stop_x, stop_y, width, s_style, canvas_n) {
     ctx.lineTo(stop_x, stop_y);
     ctx.closePath();
     ctx.stroke();
+  }else{
+    n_ctx.strokeStyle = s_style;
+    n_ctx.lineWidth = width;
+    n_ctx.beginPath();
+    n_ctx.moveTo(start_x, start_y);
+    n_ctx.lineTo(stop_x, stop_y);
+    n_ctx.closePath();
+    n_ctx.stroke();
   }
 }
 
@@ -234,10 +275,14 @@ function draw_filltext(word, fontstyle, fillstyle, x, y, canvas_n) {
     b_ctx.fillStyle = fillstyle;
     b_ctx.font = fontstyle;
     b_ctx.fillText(word, x, y);
-  } else {
+  } else if(canvas_n == "game") {
     ctx.fillStyle = fillstyle;
     ctx.font = fontstyle;
     ctx.fillText(word, x, y);
+  }else{
+    n_ctx.fillStyle = fillstyle;
+    n_ctx.font = fontstyle;
+    n_ctx.fillText(word, x, y);
   }
 }
 
@@ -272,6 +317,17 @@ window.onload = function () {
   b_canvas.height = b_size * scale;
 
   b_ctx.scale(scale, scale);
+
+  var n_canvas = $("gamenumberCanvas");
+  n_ctx = n_canvas.getContext("2d");
+
+  n_canvas.style.width = size + "px";
+  n_canvas.style.height = size + "px";
+
+  n_canvas.width = size * scale;
+  n_canvas.height = size * scale;
+
+  n_ctx.scale(scale, scale);
 
   load_logo();
   startCanvas();
