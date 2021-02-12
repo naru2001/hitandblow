@@ -10,7 +10,32 @@ GitHub: https://github.com/nkgw-marronnier
 */
 
 var degree = 0;
-var back_number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+var back_number = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  1,
+  2,
+  3,
+  4,
+  5,
+];
 var b_size_ = 630;
 var back_time = 0;
 var back_time_ = 0;
@@ -97,7 +122,7 @@ function backgroundDraw() {
   backNumber();
   lineMove();
 
-  for (var i = 0; i < 18; i++) {
+  for (var i = 0; i < 24; i++) {
     var nX = num_mas[i][0];
     var nY = num_mas[i][1];
     draw_filltext(

@@ -17,6 +17,7 @@ GitHub: https://github.com/nkgw-marronnier
 /* 背景描画領域 */
 canvas#backgroundCanvas {
   position: absolute;
+  background-color: rgb(255, 255, 228);
   padding: 0px;
   margin: 20px;
   border-radius: 15px;
@@ -41,6 +42,28 @@ canvas#gameCanvas {
 }
 
 /* ゲーム描画領域 */
+canvas#gamehitblowCanvas {
+  /*背景デバッグ用*/
+  /*visibility: hidden;*/
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 15px;
+  border: solid 10px rgb(220, 220, 220);
+}
+
+/* ゲーム描画領域 */
+canvas#gametimeCanvas {
+  /*背景デバッグ用*/
+  /*visibility: hidden;*/
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 15px;
+  border: solid 10px rgb(220, 220, 220);
+}
+
+/* ゲーム描画領域 */
 canvas#gamenumberCanvas {
   /*背景デバッグ用*/
   /*visibility: hidden;*/
@@ -48,4 +71,5 @@ canvas#gamenumberCanvas {
   padding: 0px;
   margin: 0px;
   border-radius: 15px;
+  border: solid 10px rgb(220, 220, 220);
 }
