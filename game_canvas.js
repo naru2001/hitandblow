@@ -9,6 +9,9 @@ Copyright © nkgw-marronnier 2021
 GitHub: https://github.com/nkgw-marronnier
 */
 
+var number = [];
+var gamemode = 0;
+
 // DOM要素を返す
 function $(id) {
   return document.getElementById(id);
@@ -78,6 +81,64 @@ function startCanvas() {
   draw_filltext("共有", "28px gothic", "white", 532, 561, "game");
 
   // 音量設定ボタン
+}
+
+function gameplayCanvas(num){
+  // 描画初期化
+  ctx.clearRect(0, 0, 650, 650);
+
+  gamemode = num;
+
+  for(var i = 0; i < gamemode; i++){
+    if(gamemode == 3){
+      draw_roundRect(50+200*i, 50, 130, 160, 15, "orange", "white", "game");
+    }else if(gamemode == 4){
+      draw_roundRect(35+150*i, 50, 130, 160, 15, "orange", "white", "game");
+    }else if(gamemode == 5){
+      draw_roundRect(30+120*i, 60, 110, 140, 15, "orange", "white", "game");
+    }
+  }
+
+  // テンキー描画
+  for(var i = 0; i < 9; i++){
+    if(i < 3){
+      draw_roundRect(300+100*i, 260, 80, 80, 15, "orange", "white", "game");
+      draw_filltext(i+1, "80px gothic", "white", 315+100*i, 330, "game");
+    }else if(i < 6){
+      draw_roundRect(300+100*(i-3), 350, 80, 80, 15, "orange", "white", "game");
+      draw_filltext(i+1, "80px gothic", "white", 315+100*(i-3), 420, "game");
+    }else{
+      draw_roundRect(300+100*(i-6), 440, 80, 80, 15, "orange", "white", "game");
+      draw_filltext(i+1, "80px gothic", "white", 315+100*(i-6), 510, "game");
+    }
+  }
+  draw_roundRect(300, 530, 280, 80, 15, "orange", "white", "game");
+  draw_filltext(0, "80px gothic", "white", 415, 600, "game");
+
+  console.log(number);
+
+  //select_num();
+}
+
+function select_num(select_){
+  var select = [1,2,3,4];
+  var select_n = select.length;
+  for(var i = 0; i < gamemode; i++){
+    if(gamemode == 3 && select_n > 0){
+      draw_filltext(select[i], "130px gothic", "black", 75+200*i, 180, "game");
+      select_n--;
+    }else if(gamemode == 4 && select_n > 0){
+      draw_filltext(select[i], "130px gothic", "black", 60+150*i, 180, "game");
+      select_n--;
+    }else if(gamemode == 5 && select_n > 0){
+      draw_filltext(select[i], "130px gothic", "black", 45+120*i, 180, "game");
+      select_n--;
+    }
+  }
+}
+
+function ans_result(){
+  ans_check(gamemode, ans_p);
 }
 
 // 角丸四角形作成関数
@@ -221,4 +282,5 @@ window.onload = function () {
   load_logo();
   startCanvas();
   animationUpdate();
+  //game3Canvas();
 };
