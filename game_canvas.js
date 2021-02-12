@@ -80,6 +80,10 @@ function startCanvas() {
   // 音量設定ボタン
 }
 
+function play_canvas(n){ // n:digit
+  
+}
+
 // 角丸四角形作成関数
 /*
 okikuさんのブログを参考
