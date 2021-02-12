@@ -81,6 +81,16 @@ function startCanvas() {
   draw_filltext("共有", "28px gothic", "white", 532, 561, "game");
 
   // 音量設定ボタン
+
+  // 著作権表記
+  draw_filltext(
+    "Copyright © naru2001, nkgw-marronnier 2021 All Rights Reserved.",
+    "13px gothic",
+    "black",
+    115,
+    625,
+    "game"
+  );
 }
 
 function gameplayCanvas(num) {
