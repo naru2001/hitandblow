@@ -1,4 +1,4 @@
-var flag = 0; // 0->Menu, 1->play 2->end 3->rule 4->volume
+var flag = 0; // 0->Menu, 1->play 2->end(成功) 3->end(失敗) 4->rule 5->volume
 var digit;
 var rep_array = [];
 var ans_array = [];
@@ -16,6 +16,10 @@ function eval_Ineq(a, b, n) {
     return a <= n && n <= b;
 }
 
+function flag_ch(n) {
+    flag = n;
+}
+
 function ans_check() {
     let n = ans_array.length;
     let hit = 0;
@@ -24,7 +28,7 @@ function ans_check() {
         if (ans_array[i] === rep_array[i]) hit++;
         else if (ans_array.indexOf(rep_array[i]) >= 0) brow++;
     }
-    hitblow(hit,brow,ans_array); // canvasに渡す
+    hitblow(hit, brow); // canvasに渡す
     rep_array = [];
 }
 
@@ -49,15 +53,15 @@ function check_coord(x, y) {
             flag = 1;
             digit = 3;
             ans_array = make_number(3);
-            gameplayCanvas(3 ,ans_array);
+            gameplayCanvas(3, ans_array);
         } else if (eval_Ineq(250.0, 400.0, x) && eval_Ineq(250.0, 450.0, y)) {
-          starttime();
+            starttime();
             flag = 1;
             digit = 4;
             ans_array = make_number(4);
             gameplayCanvas(4, ans_array);
         } else if (eval_Ineq(450.0, 600.0, x) && eval_Ineq(250.0, 450.0, y)) {
-          starttime();
+            starttime();
             flag = 1;
             digit = 5;
             ans_array = make_number(5);
@@ -71,7 +75,7 @@ function check_coord(x, y) {
         } else if (eval_Ineq(505.0, 555.0, x) && eval_Ineq(543.0, 583.0, y)) {
             console.log("up");
             upVolume();
-        } else if (eval_Ineq(560.0,610.0,x) && eval_Ineq(543.0,583,y)){
+        } else if (eval_Ineq(560.0, 610.0, x) && eval_Ineq(543.0, 583, y)) {
             console.log("down");
             downVolume();
         }
@@ -126,13 +130,21 @@ function check_coord(x, y) {
             rep_array.push(0);
             select_num(rep_array);
             flag = 1;
+        } else if(eval_Ineq(594.0,631.0,x) && eval_Ineq(542.0,579.0,y)){
+            upVolume();
+        } else if(eval_Ineq(594.0,631.0,x) && eval_Ineq(582.0,619.0,y)){
+            downVolume();
         }
         full_check();
         console.log(rep_array, ans_array);
-    }
+    } else if (flag === 3){
+        if(flag){}
+    };
+
 }
 
 window.addEventListener("load", function () {
     var canvas = $("gamenumberCanvas");
     canvas.addEventListener("click", onClick, false);
 });
+
