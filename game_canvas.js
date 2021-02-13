@@ -45,6 +45,9 @@ function load_logo() {
 
 function canvas_reset(x, y, dx, dy) {
 	ctx.clearRect(x, y, dx, dy);
+	n_ctx.clearRect(x, y, dx, dy);
+	h_ctx.clearRect(x, y, dx, dy);
+	t_ctx.clearRect(x, y, dx, dy);
 }
 
 // ゲーム開始画面描画
@@ -240,8 +243,8 @@ function select_num(select_) {
 			select_n--;
 		}
 	}
-  sound1.currentTime = 0;
-  sound1.play();
+	sound1.currentTime = 0;
+	sound1.play();
 	timeUpdate();
 }
 
@@ -250,8 +253,8 @@ function hitblow(hit_, blow_) {
 	var hit = hit_;
 	var blow = blow_;
 
-  sound2.currentTime = 0;
-  sound2.play();
+	sound2.currentTime = 0;
+	sound2.play();
 
 	draw_filltext(hit, "120px gothic", "red", 60, 375, "gamehitblow");
 	draw_filltext("HIT", "60px gothic", "black", 130, 375, "gamehitblow");
@@ -767,9 +770,9 @@ window.onload = function () {
 
 	bgm1 = document.querySelector("#gamemusic1");
 	bgm2 = document.querySelector("#gamemusic2");
-  sound1 = document.querySelector("#gamesound1");
-  sound2 = document.querySelector("#gamesound2");
-  sound3 = document.querySelector("#gamesound3");
+	sound1 = document.querySelector("#gamesound1");
+	sound2 = document.querySelector("#gamesound2");
+	sound3 = document.querySelector("#gamesound3");
 
 	load_logo();
 	startCanvas();

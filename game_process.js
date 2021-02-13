@@ -137,9 +137,24 @@ function check_coord(x, y) {
         }
         full_check();
         console.log(rep_array, ans_array);
-    } else if (flag === 3){
-        if(flag){}
-    };
+    } else if (flag === 2){
+        if(eval_Ineq(74.0,376.0,x) && eval_Ineq(499.0,601.0,y)){
+            flag=0;
+            canvas_reset(0,0,650,650);
+            load_logo();
+            startCanvas();
+        }
+        else if(eval_Ineq(419.0,551.0,x)&&eval_Ineq(499.0,601.0,y)){
+            window.open("https://twitter.com/share?ref_src=twsrc%5Etfw","_blank");
+        }
+    } else if(flag===3){
+        if(eval_Ineq(174.0,476.0,x)&&eval_Ineq(499.0,601.0,y)){
+            flag=0;
+            canvas_reset(0,0,650,650);
+            load_logo();
+            startCanvas();
+        }
+    }
 
 }
 
