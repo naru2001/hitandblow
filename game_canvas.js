@@ -82,8 +82,11 @@ function startCanvas() {
   draw_filltext("ランキング", "35px gothic", "white", 290, 565, "game");
 
   // 音量設定ボタン
-  draw_roundRect(510, 510, 90, 80, 15, "#00bfff", "white", "game");
-  draw_filltext("volume", "23px gothic", "white", 513, 560, "game");
+  draw_filltext("volume", "26px gothic", "black", 510, 535, "game");
+  draw_roundRect(505, 543, 50, 40, 15, "#00bfff", "white", "game");
+  draw_filltext("+1", "26px gothic", "black", 510, 570, "game");
+  draw_roundRect(560, 543, 50, 40, 15, "#00bfff", "white", "game");
+  draw_filltext("-1", "26px gothic", "black", 572, 570, "game");
 
   // 著作権表記
   draw_filltext(
@@ -744,7 +747,6 @@ window.onload = function () {
 
   bgm1 = document.querySelector("#gamemusic1");
   bgm2 = document.querySelector("#gamemusic2");
-
   load_logo();
   startCanvas();
   animationUpdate();

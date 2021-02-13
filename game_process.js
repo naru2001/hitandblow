@@ -1,4 +1,4 @@
-var flag = 0; // 0->Menu, 1->play 2->end
+var flag = 0; // 0->Menu, 1->play 2->end 3->rule 4->volume
 var digit;
 var rep_array = [];
 var ans_array = [];
@@ -68,8 +68,12 @@ function check_coord(x, y) {
         } else if (eval_Ineq(280.0, 480.0, x) && eval_Ineq(510.0, 590.0, y)) {
             //console.log("rank");
             flag = 0;
-        } else if (eval_Ineq(520.0, 600.0, x) && eval_Ineq(510.0, 590.0, y)) {
-            //console.log("share");
+        } else if (eval_Ineq(505.0, 555.0, x) && eval_Ineq(543.0, 583.0, y)) {
+            console.log("up");
+            upVolume();
+        } else if (eval_Ineq(560.0,610.0,x) && eval_Ineq(543.0,583,y)){
+            console.log("down");
+            downVolume();
         }
     } else if (flag == 1) {
         if (eval_Ineq(300.0, 380.0, x) && eval_Ineq(260.0, 340.0, y)) {
