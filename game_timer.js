@@ -1,7 +1,11 @@
 var limitTime = 120;
-var startTime = Date.now();
+var startTime = 0;
 var timeDiff;
 var score = 0;
+
+function starttime(){
+  startTime = Date.now();
+}
 
 function countdown() {
     timeDiff = Date.now() - startTime;
@@ -10,9 +14,6 @@ function countdown() {
     timeDiff = Math.floor(timeDiff);
     timeDiff = timeDiff / 100;
     //$('.sec').text(timeDiff);
-    if(timeDiff <= 0){
-      timeDiff = 0;
-    }
     return timeDiff;
 }
 

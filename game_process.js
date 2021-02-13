@@ -24,7 +24,7 @@ function ans_check() {
         if (ans_array[i] === rep_array[i]) hit++;
         else if (ans_array.indexOf(rep_array[i]) >= 0) brow++;
     }
-    hitblow(hit,brow); // canvasに渡す
+    hitblow(hit,brow,ans_array); // canvasに渡す
     rep_array = [];
 }
 
@@ -45,26 +45,29 @@ function full_check() {
 function check_coord(x, y) {
     if (flag == 0) {
         if (eval_Ineq(50.0, 200.0, x) && eval_Ineq(250.0, 450.0, y)) {
+            starttime();
             flag = 1;
             digit = 3;
             ans_array = make_number(3);
-            gameplayCanvas(3);
+            gameplayCanvas(3 ,ans_array);
         } else if (eval_Ineq(250.0, 400.0, x) && eval_Ineq(250.0, 450.0, y)) {
+          starttime();
             flag = 1;
             digit = 4;
             ans_array = make_number(4);
-            gameplayCanvas(4);
+            gameplayCanvas(4, ans_array);
         } else if (eval_Ineq(450.0, 600.0, x) && eval_Ineq(250.0, 450.0, y)) {
+          starttime();
             flag = 1;
             digit = 5;
             ans_array = make_number(5);
-            gameplayCanvas(5);
+            gameplayCanvas(5, ans_array);
         } else if (eval_Ineq(50.0, 250.0, x) && eval_Ineq(510.0, 590.0, y)) {
             //console.log("rule");
-            flag = 4;
+            flag = 0;
         } else if (eval_Ineq(280.0, 480.0, x) && eval_Ineq(510.0, 590.0, y)) {
             //console.log("rank");
-            flag = 5;
+            flag = 0;
         } else if (eval_Ineq(520.0, 600.0, x) && eval_Ineq(510.0, 590.0, y)) {
             //console.log("share");
         }

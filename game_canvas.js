@@ -9,8 +9,13 @@ Copyright © nkgw-marronnier 2021
 GitHub: https://github.com/nkgw-marronnier
 */
 
-var number = [];
+//var number = [];
 var gamemode = 3;
+var ansarray = [];
+var flag_d = 0; //0->game, 1->result
+var bgm1;
+var bgm2;
+var time_s;
 
 // DOM要素を返す
 function $(id) {
@@ -87,17 +92,18 @@ function startCanvas() {
     "Copyright © naru2001, nkgw-marronnier 2021 All Rights Reserved.",
     "13px gothic",
     "black",
-    115,
+    110,
     625,
     "game"
   );
 }
 
-function gameplayCanvas(num) {
+function gameplayCanvas(num, ans_) {
   // 描画初期化
   ctx.clearRect(0, 0, 650, 650);
   // ゲームモード判定用
   gamemode = num;
+  ansarray = ans_;
 
   // 選択した数字の表示板描画
   for (var i = 0; i < gamemode; i++) {
@@ -108,6 +114,12 @@ function gameplayCanvas(num) {
     } else if (gamemode == 5) {
       draw_roundRect(30 + 120 * i, 60, 110, 140, 15, "purple", "white", "game");
     }
+  }
+
+  if (gamemode == 3 || gamemode == 4) {
+    bgm1.play();
+  } else {
+    bgm2.play();
   }
 
   // テンキー描画
@@ -171,7 +183,6 @@ function gameplayCanvas(num) {
   );
 
   select_num();
-  timeUpdate();
 }
 
 function select_num(select_) {
@@ -217,6 +228,7 @@ function select_num(select_) {
       select_n--;
     }
   }
+  timeUpdate();
 }
 
 function hitblow(hit_, blow_) {
@@ -229,6 +241,20 @@ function hitblow(hit_, blow_) {
   draw_line(60, 400, 240, 400, 4, "rgb(0,0,0,0.4)", "gamehitblow");
   draw_filltext(blow, "100px gothic", "red", 60, 495, "gamehitblow");
   draw_filltext("BLOW", "40px gothic", "black", 120, 495, "gamehitblow");
+
+  if (hit == 3 && gamemode == 3) {
+    flag_d = 1;
+    bgm1.pause();
+    resultCanvas("success");
+  } else if (hit == 4 && gamemode == 4) {
+    flag_d = 1;
+    bgm1.pause();
+    resultCanvas("success");
+  } else if (hit == 5 && gamemode == 5) {
+    flag_d = 1;
+    bgm2.pause();
+    resultCanvas("success");
+  }
 }
 
 function gametimedraw() {
@@ -244,20 +270,216 @@ function gametimedraw() {
   );
   draw_filltext("秒", "30px gothic", "red", 240, 600, "gametime");
   draw_line(
-    80,
+    75,
     630,
-    80 + 4 * (120 - time_count),
+    75 + 4 * (120 - time_count),
     630,
-    10,
+    12,
     "rgb(0,200,30,0.6)",
     "gametime"
   );
+
+  if (time_count < 0) {
+    flag_d = 1;
+    if (gamemode == 3 || gamemode == 4) {
+      bgm1.pause();
+    } else {
+      bgm2.pause();
+    }
+
+    resultCanvas("timeup");
+  }
+  time_s = time_count;
+  //console.log(time_count);
 }
 
 function timeUpdate() {
+  if (flag_d != 1) {
+    t_ctx.clearRect(0, 0, 650, 650);
+    gametimedraw();
+    window.requestAnimationFrame(timeUpdate);
+  }
+}
+
+function resultCanvas(result_) {
+  var result = result_;
   t_ctx.clearRect(0, 0, 650, 650);
-  gametimedraw();
-  window.requestAnimationFrame(timeUpdate);
+  ctx.clearRect(0, 0, 650, 650);
+  n_ctx.clearRect(0, 0, 650, 650);
+  h_ctx.clearRect(0, 0, 650, 650);
+
+  if (result == "timeup") {
+    draw_filltext("TIME UP!!", "100px gothic", "red", 75, 150, "game");
+    draw_filltext("ANSWER:", "60px gothic", "black", 180, 250, "game");
+
+    for (var i = 0; i < gamemode; i++) {
+      if (gamemode == 3) {
+        draw_roundRect(
+          50 + 200 * i,
+          290,
+          130,
+          160,
+          15,
+          "orange",
+          "white",
+          "game"
+        );
+      } else if (gamemode == 4) {
+        draw_roundRect(35 + 150 * i, 290, 130, 160, 15, "red", "white", "game");
+      } else if (gamemode == 5) {
+        draw_roundRect(
+          30 + 120 * i,
+          290,
+          110,
+          160,
+          15,
+          "purple",
+          "white",
+          "game"
+        );
+      }
+    }
+    var ansarray_n = ansarray.length;
+    for (var i = 0; i < gamemode; i++) {
+      if (gamemode == 3 && ansarray_n > 0) {
+        draw_filltext(
+          ansarray[i],
+          "130px gothic",
+          "white",
+          75 + 200 * i,
+          420,
+          "gamenum"
+        );
+        ansarray_n--;
+      } else if (gamemode == 4 && ansarray_n > 0) {
+        draw_filltext(
+          ansarray[i],
+          "130px gothic",
+          "white",
+          60 + 150 * i,
+          420,
+          "gamenum"
+        );
+        ansarray_n--;
+      } else if (gamemode == 5 && ansarray_n > 0) {
+        draw_filltext(
+          ansarray[i],
+          "130px gothic",
+          "white",
+          45 + 120 * i,
+          420,
+          "gamenum"
+        );
+        ansarray_n--;
+      }
+    }
+    draw_roundRect(
+      175,
+      500,
+      300,
+      100,
+      15,
+      "rgb(100, 200, 255, 0.8)",
+      "white",
+      "game"
+    );
+    draw_filltext("TOPへ戻る", "50px gothic", "white", 200, 570, "game");
+  } else if (result == "success") {
+    draw_filltext("CLEAR!!", "100px gothic", "red", 120, 150, "game");
+    draw_filltext(
+      "TIME:" + (120 - time_s).toFixed(3) + "秒",
+      "60px gothic",
+      "black",
+      320,
+      250,
+      "gametime"
+    );
+
+    for (var i = 0; i < gamemode; i++) {
+      if (gamemode == 3) {
+        draw_roundRect(
+          50 + 200 * i,
+          290,
+          130,
+          160,
+          15,
+          "orange",
+          "white",
+          "game"
+        );
+      } else if (gamemode == 4) {
+        draw_roundRect(35 + 150 * i, 290, 130, 160, 15, "red", "white", "game");
+      } else if (gamemode == 5) {
+        draw_roundRect(
+          30 + 120 * i,
+          290,
+          110,
+          160,
+          15,
+          "purple",
+          "white",
+          "game"
+        );
+      }
+    }
+    var ansarray_n = ansarray.length;
+    for (var i = 0; i < gamemode; i++) {
+      if (gamemode == 3 && ansarray_n > 0) {
+        draw_filltext(
+          ansarray[i],
+          "130px gothic",
+          "white",
+          75 + 200 * i,
+          420,
+          "gamenum"
+        );
+        ansarray_n--;
+      } else if (gamemode == 4 && ansarray_n > 0) {
+        draw_filltext(
+          ansarray[i],
+          "130px gothic",
+          "white",
+          60 + 150 * i,
+          420,
+          "gamenum"
+        );
+        ansarray_n--;
+      } else if (gamemode == 5 && ansarray_n > 0) {
+        draw_filltext(
+          ansarray[i],
+          "130px gothic",
+          "white",
+          45 + 120 * i,
+          420,
+          "gamenum"
+        );
+        ansarray_n--;
+      }
+    }
+    draw_roundRect(
+      75,
+      500,
+      300,
+      100,
+      15,
+      "rgb(100, 200, 255, 0.8)",
+      "white",
+      "game"
+    );
+    draw_roundRect(
+      420,
+      500,
+      130,
+      100,
+      15,
+      "rgb(100, 200, 255, 0.8)",
+      "white",
+      "game"
+    );
+
+    draw_filltext("TOPへ戻る", "50px gothic", "white", 100, 570, "game");
+    draw_filltext("共有", "50px gothic", "white", 435, 570, "game");
+  }
 }
 
 // 角丸四角形作成関数
@@ -522,7 +744,11 @@ window.onload = function () {
 
   t_ctx.scale(scale, scale);
 
+  bgm1 = document.querySelector("#gamemusic1");
+  bgm2 = document.querySelector("#gamemusic2");
+
   load_logo();
   startCanvas();
   animationUpdate();
+  //resultCanvas("timeup");
 };
