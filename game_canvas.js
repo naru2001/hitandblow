@@ -15,6 +15,9 @@ var ansarray = [];
 var flag_d = 0; //0->game, 1->result
 var bgm1;
 var bgm2;
+var sound1;
+var sound2;
+var sound3;
 var time_s;
 
 // DOM要素を返す
@@ -237,6 +240,8 @@ function select_num(select_) {
 			select_n--;
 		}
 	}
+  sound1.currentTime = 0;
+  sound1.play();
 	timeUpdate();
 }
 
@@ -244,6 +249,9 @@ function hitblow(hit_, blow_) {
 	h_ctx.clearRect(0, 0, 650, 650);
 	var hit = hit_;
 	var blow = blow_;
+
+  sound2.currentTime = 0;
+  sound2.play();
 
 	draw_filltext(hit, "120px gothic", "red", 60, 375, "gamehitblow");
 	draw_filltext("HIT", "60px gothic", "black", 130, 375, "gamehitblow");
@@ -759,6 +767,10 @@ window.onload = function () {
 
 	bgm1 = document.querySelector("#gamemusic1");
 	bgm2 = document.querySelector("#gamemusic2");
+  sound1 = document.querySelector("#gamesound1");
+  sound2 = document.querySelector("#gamesound2");
+  sound3 = document.querySelector("#gamesound3");
+
 	load_logo();
 	startCanvas();
 	animationUpdate();

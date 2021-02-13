@@ -16,6 +16,7 @@
   <script src="game_process.js" charset="UTF-8"></script>
   <!-- ゲーム処理(時間) -->
   <script src="game_timer.js" charset="UTF-8"></script>
+  <!-- 音量調整処理 -->
   <script src="game_music.js" charset="UTF-8"></script>
   <link rel="stylesheet" href="game_style.css" charset="UTF-8">
 </head>
@@ -31,12 +32,21 @@
   </div>
   <!-- 音楽ファイル読み込み -->
   <audio id="gamemusic1" preload>
-    <source src="c.wav" type="audio/wav">
+    <source src="bgm/c.wav" type="audio/wav">
   </audio>
   <audio id="gamemusic2" preload>
-    <source src="g.wav" type="audio/wav">
+    <source src="bgm/g.wav" type="audio/wav">
   </audio>
   <!-- 効果音ファイル読み込み -->
+  <audio id="gamesound1" preload>
+    <source src="sound/44.mp3" type="audio/mp3">
+  </audio>
+  <audio id="gamesound2" preload>
+    <source src="sound/7.mp3" type="audio/mp3">
+  </audio>
+  <audio id="gamesound3" preload>
+    <source src="sound/1.mp3" type="audio/mp3">
+  </audio>
 
 </body>
 
