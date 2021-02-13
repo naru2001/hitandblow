@@ -81,11 +81,9 @@ function startCanvas() {
   draw_roundRect(280, 510, 200, 80, 15, "brown", "white", "game");
   draw_filltext("ランキング", "35px gothic", "white", 290, 565, "game");
 
-  // 共有ボタン
-  draw_roundRect(520, 510, 80, 80, 15, "#00bfff", "white", "game");
-  draw_filltext("共有", "28px gothic", "white", 532, 561, "game");
-
   // 音量設定ボタン
+  draw_roundRect(510, 510, 90, 80, 15, "#00bfff", "white", "game");
+  draw_filltext("volume", "23px gothic", "white", 513, 560, "game");
 
   // 著作権表記
   draw_filltext(
