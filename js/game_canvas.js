@@ -15,6 +15,9 @@ var ansarray = [];
 var flag_d; //0->game, 1->result
 var bgm1;
 var bgm2;
+var bgm3;
+var bgm4;
+var bgm5;
 var sound1;
 var sound2;
 var sound3;
@@ -52,6 +55,15 @@ function canvas_reset(x, y, dx, dy) {
 
 // ゲーム開始画面描画
 function startCanvas() {
+  if(bgm3.paused == false){
+    bgm3.pause();
+  }else if(bgm5.paused == false){
+    bgm5.pause();
+  }
+
+  bgm4.currentTime = 0;
+  bgm4.play();
+
 	// 説明文
 	draw_filltext(
 		"遊ぶゲームモードを選択してください.",
@@ -116,6 +128,7 @@ function gameplayCanvas(num, ans_) {
 	gamemode = num;
 	ansarray = ans_;
 
+  bgm4.pause();
   flag_d = 0;
 
 	// 選択した数字の表示板描画
@@ -317,7 +330,6 @@ function gametimedraw() {
 		resultCanvas("timeup");
 	}
 	time_s = time_count;
-	//console.log(time_count);
 }
 
 function timeUpdate() {
@@ -339,6 +351,9 @@ function resultCanvas(result_) {
 		flag_ch(3);
 		draw_filltext("TIME UP!!", "100px gothic", "red", 75, 150, "game");
 		draw_filltext("ANSWER:", "60px gothic", "black", 180, 250, "game");
+
+    bgm5.currentTime = 0;
+    bgm5.play();
 
 		for (var i = 0; i < gamemode; i++) {
 			if (gamemode == 3) {
@@ -413,6 +428,8 @@ function resultCanvas(result_) {
 		);
 		draw_filltext("TOPへ戻る", "50px gothic", "white", 200, 570, "game");
 	} else if (result == "success") {
+    bgm3.currentTime = 0;
+    bgm3.play();
 		draw_filltext("CLEAR!!", "100px gothic", "red", 120, 150, "game");
 		draw_filltext(
 			"TIME:" + (120 - time_s).toFixed(3) + "秒",
@@ -774,6 +791,9 @@ window.onload = function () {
 
 	bgm1 = document.querySelector("#gamemusic1");
 	bgm2 = document.querySelector("#gamemusic2");
+  bgm3 = document.querySelector("#gamemusic3");
+  bgm4 = document.querySelector("#gamemusic4");
+  bgm5 = document.querySelector("#gamemusic5");
 	sound1 = document.querySelector("#gamesound1");
 	sound2 = document.querySelector("#gamesound2");
 	sound3 = document.querySelector("#gamesound3");
