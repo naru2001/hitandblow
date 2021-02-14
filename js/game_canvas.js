@@ -9,7 +9,6 @@ Copyright © nkgw-marronnier 2021
 GitHub: https://github.com/nkgw-marronnier
 */
 
-//var number = [];
 var gamemode = 3;
 var ansarray = [];
 var flag_d; //0->game, 1->result
@@ -18,7 +17,6 @@ var bgm2;
 var bgm3;
 var bgm4;
 var bgm5;
-var sound1;
 var sound2;
 var sound3;
 var time_s;
@@ -75,40 +73,40 @@ function startCanvas() {
 	);
 
 	// 3桁選択ボタン
-	draw_roundRect(50, 250, 150, 200, 15, "orange", "white", "game");
+	draw_roundRect(50, 250, 150, 200, 15, "rgb(255,128,0,0.8)", "white", "game");
 	draw_filltext("3", "130px gothic", "white", 55, 370, "game");
 	draw_filltext("桁", "55px gothic", "white", 135, 370, "game");
 	draw_filltext("制限:120秒", "25px gothic", "white", 60, 430, "game");
 	draw_line(60, 395, 190, 395, 4, "white", "game");
 
 	// 4桁選択ボタン
-	draw_roundRect(250, 250, 150, 200, 15, "red", "white", "game");
+	draw_roundRect(250, 250, 150, 200, 15, "rgb(255,0,0,0.8)", "white", "game");
 	draw_filltext("4", "130px gothic", "white", 255, 370, "game");
 	draw_filltext("桁", "55px gothic", "white", 335, 370, "game");
 	draw_filltext("制限:120秒", "25px gothic", "white", 260, 430, "game");
 	draw_line(260, 395, 390, 395, 4, "white", "game");
 
 	// 5桁選択ボタン
-	draw_roundRect(450, 250, 150, 200, 15, "purple", "white", "game");
+	draw_roundRect(450, 250, 150, 200, 15, "rgb(128,0,128,0.8)", "white", "game");
 	draw_filltext("5", "130px gothic", "white", 455, 370, "game");
 	draw_filltext("桁", "55px gothic", "white", 535, 370, "game");
 	draw_filltext("制限:120秒", "25px gothic", "white", 460, 430, "game");
 	draw_line(460, 395, 590, 395, 4, "white", "game");
 
 	// ルール確認ボタン
-	draw_roundRect(50, 510, 200, 80, 15, "green", "white", "game");
+	draw_roundRect(50, 510, 200, 80, 15, "rgb(0,128,0,0.8)", "white", "game");
 	draw_filltext("ルール確認", "35px gothic", "white", 60, 565, "game");
 
 	// ランキング閲覧ボタン
-	draw_roundRect(280, 510, 200, 80, 15, "brown", "white", "game");
+	draw_roundRect(280, 510, 200, 80, 15, "rgb(128,0,0,0.8)", "white", "game");
 	draw_filltext("ランキング", "35px gothic", "white", 290, 565, "game");
 
 	// 音量設定ボタン
 	draw_filltext("volume", "26px gothic", "black", 510, 535, "game");
-	draw_roundRect(505, 543, 50, 40, 15, "#00bfff", "white", "game");
-	draw_filltext("+1", "26px gothic", "black", 510, 570, "game");
-	draw_roundRect(560, 543, 50, 40, 15, "#00bfff", "white", "game");
-	draw_filltext("-1", "26px gothic", "black", 572, 570, "game");
+	draw_roundRect(505, 543, 50, 40, 15, "rgb(0,220,255,0.8)", "white", "game");
+	draw_filltext("+", "26px gothic", "white", 520, 570, "game");
+	draw_roundRect(560, 543, 50, 40, 15, "rgb(0,220,255,0.8)", "white", "game");
+	draw_filltext("-", "50px gothic", "white", 573, 578, "game");
 
 	// 著作権表記
 	draw_filltext(
@@ -134,11 +132,11 @@ function gameplayCanvas(num, ans_) {
 	// 選択した数字の表示板描画
 	for (var i = 0; i < gamemode; i++) {
 		if (gamemode == 3) {
-			draw_roundRect(50 + 200 * i, 50, 130, 160, 15, "orange", "white", "game");
+			draw_roundRect(50 + 200 * i, 50, 130, 160, 15, "rgb(255,128,0,0.8)", "white", "game");
 		} else if (gamemode == 4) {
-			draw_roundRect(35 + 150 * i, 50, 130, 160, 15, "red", "white", "game");
+			draw_roundRect(35 + 150 * i, 50, 130, 160, 15, "rgb(255,0,0,0.8)", "white", "game");
 		} else if (gamemode == 5) {
-			draw_roundRect(30 + 120 * i, 60, 110, 140, 15, "purple", "white", "game");
+			draw_roundRect(30 + 120 * i, 60, 110, 140, 15, "rgb(128,0,128,0.8)", "white", "game");
 		}
 	}
 
@@ -153,7 +151,7 @@ function gameplayCanvas(num, ans_) {
 	// テンキー描画
 	for (var i = 0; i < 9; i++) {
 		if (i < 3) {
-			draw_roundRect(300 + 100 * i, 260, 80, 80, 15, "gray", "white", "game");
+			draw_roundRect(300 + 100 * i, 260, 80, 80, 15, "rgb(128,128,128,0.8)", "white", "game");
 			draw_filltext(i + 1, "80px gothic", "white", 315 + 100 * i, 330, "game");
 		} else if (i < 6) {
 			draw_roundRect(
@@ -162,7 +160,7 @@ function gameplayCanvas(num, ans_) {
 				80,
 				80,
 				15,
-				"gray",
+				"rgb(128,128,128,0.8)",
 				"white",
 				"game"
 			);
@@ -181,7 +179,7 @@ function gameplayCanvas(num, ans_) {
 				80,
 				80,
 				15,
-				"gray",
+				"rgb(128,128,128,0.8)",
 				"white",
 				"game"
 			);
@@ -195,13 +193,13 @@ function gameplayCanvas(num, ans_) {
 			);
 		}
 	}
-	draw_roundRect(300, 530, 280, 80, 15, "gray", "white", "game");
+	draw_roundRect(300, 530, 280, 80, 15, "rgb(128,128,128,0.8)", "white", "game");
 	draw_filltext(0, "80px gothic", "white", 415, 600, "game");
 
-	draw_roundRect(595, 543, 35, 35, 15, "#00bfff", "white", "game");
-	draw_filltext("+", "26px gothic", "black", 602, 569, "game");
-	draw_roundRect(595, 583, 35, 35, 15, "#00bfff", "white", "game");
-	draw_filltext("-", "30px gothic", "black", 606, 611, "game");
+	draw_roundRect(595, 543, 35, 35, 15, "rgb(0,230,255,0.8)", "white", "game");
+	draw_filltext("+", "26px gothic", "white", 602, 569, "game");
+	draw_roundRect(595, 583, 35, 35, 15, "rgb(0,230,255,0.8)", "white", "game");
+	draw_filltext("-", "30px gothic", "white", 606, 611, "game");
 	// 結果表示板描画
 	draw_roundRect(
 		50,
@@ -260,8 +258,6 @@ function select_num(select_) {
 			select_n--;
 		}
 	}
-	sound1.currentTime = 0;
-	sound1.play();
 	timeUpdate();
 }
 
@@ -309,7 +305,17 @@ function gametimedraw() {
 		"gametime"
 	);
 	draw_filltext("秒", "30px gothic", "red", 240, 600, "gametime");
-	draw_line(
+  draw_line(
+		75,
+		630,
+		75 + 4 * 120,
+		630,
+		17,
+		"rgb(255,255,255,0.8)",
+		"gametime"
+	);
+  if(time_count>60){
+    draw_line(
 		75,
 		630,
 		75 + 4 * (120 - time_count),
@@ -318,6 +324,27 @@ function gametimedraw() {
 		"rgb(0,200,30,0.6)",
 		"gametime"
 	);
+  }else if(time_count>20){
+    draw_line(
+      75,
+      630,
+      75 + 4 * (120 - time_count),
+      630,
+      12,
+      "rgb(255,128,0,0.6)",
+      "gametime"
+    );
+  }else{
+    draw_line(
+      75,
+      630,
+      75 + 4 * (120 - time_count),
+      630,
+      12,
+      "rgb(255,0,0,0.6)",
+      "gametime"
+    );
+  }
 
 	if (time_count < 0) {
 		flag_d = 1;
@@ -363,12 +390,12 @@ function resultCanvas(result_) {
 					130,
 					160,
 					15,
-					"orange",
+					"rgb(255,128,0,0.8)",
 					"white",
 					"game"
 				);
 			} else if (gamemode == 4) {
-				draw_roundRect(35 + 150 * i, 290, 130, 160, 15, "red", "white", "game");
+				draw_roundRect(35 + 150 * i, 290, 130, 160, 15, "rgb(255,0,0,0.8)", "white", "game");
 			} else if (gamemode == 5) {
 				draw_roundRect(
 					30 + 120 * i,
@@ -376,7 +403,7 @@ function resultCanvas(result_) {
 					110,
 					160,
 					15,
-					"purple",
+					"rgb(128,0,128,0.8)",
 					"white",
 					"game"
 				);
@@ -448,12 +475,12 @@ function resultCanvas(result_) {
 					130,
 					160,
 					15,
-					"orange",
+					"rgb(255,128,0,0.8)",
 					"white",
 					"game"
 				);
 			} else if (gamemode == 4) {
-				draw_roundRect(35 + 150 * i, 290, 130, 160, 15, "red", "white", "game");
+				draw_roundRect(35 + 150 * i, 290, 130, 160, 15, "rgb(255,0,0,0.8)", "white", "game");
 			} else if (gamemode == 5) {
 				draw_roundRect(
 					30 + 120 * i,
@@ -461,7 +488,7 @@ function resultCanvas(result_) {
 					110,
 					160,
 					15,
-					"purple",
+					"rgb(128,0,128,0.8)",
 					"white",
 					"game"
 				);
@@ -794,7 +821,6 @@ window.onload = function () {
   bgm3 = document.querySelector("#gamemusic3");
   bgm4 = document.querySelector("#gamemusic4");
   bgm5 = document.querySelector("#gamemusic5");
-	sound1 = document.querySelector("#gamesound1");
 	sound2 = document.querySelector("#gamesound2");
 	sound3 = document.querySelector("#gamesound3");
 
