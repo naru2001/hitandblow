@@ -55,6 +55,9 @@ function rule_del(){
 	r_ctx.clearRect(0,0,650,650);
 }
 
+function get_time(){
+	return (120 - time_s).toFixed(3);
+}
 // ゲーム開始画面描画
 function startCanvas() {
 	if (bgm3.paused == false) {

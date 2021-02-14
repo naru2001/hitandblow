@@ -182,7 +182,8 @@ function check_coord(x, y) {
         else if(eval_Ineq(419.0,551.0,x)&&eval_Ineq(499.0,601.0,y)){
             sound4.currentTime = 0;
             sound4.play();
-            window.open("https://twitter.com/share?ref_src=twsrc%5Etfw","_blank");
+            var temp="https://twitter.com/share?ref_src=twsrc%5Etfw&text=";
+            window.open(temp+String(get_time())+"秒でクリア！","_blank");
         }
     } else if(flag===3){
         if(eval_Ineq(174.0,476.0,x)&&eval_Ineq(499.0,601.0,y)){
