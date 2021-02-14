@@ -37,7 +37,7 @@ function loadImage(fname, onload) {
 // ロゴ画像読み込み
 function load_logo() {
 	// 題名
-	var logo_src = "menu_logo.png";
+	var logo_src = "img/menu_logo.png";
 	logo_image = loadImage(logo_src);
 	logo_image.onload = function () {
 		ctx.drawImage(logo_image, 0, 0, 600, 200);
@@ -51,16 +51,20 @@ function canvas_reset(x, y, dx, dy) {
 	t_ctx.clearRect(x, y, dx, dy);
 }
 
+function rule_del(){
+	r_ctx.clearRect(0,0,650,650);
+}
+
 // ゲーム開始画面描画
 function startCanvas() {
-  if(bgm3.paused == false){
-    bgm3.pause();
-  }else if(bgm5.paused == false){
-    bgm5.pause();
-  }
+	if (bgm3.paused == false) {
+		bgm3.pause();
+	} else if (bgm5.paused == false) {
+		bgm5.pause();
+	}
 
-  bgm4.currentTime = 0;
-  bgm4.play();
+	bgm4.currentTime = 0;
+	bgm4.play();
 
 	// 説明文
 	draw_filltext(
@@ -126,8 +130,8 @@ function gameplayCanvas(num, ans_) {
 	gamemode = num;
 	ansarray = ans_;
 
-  bgm4.pause();
-  flag_d = 0;
+	bgm4.pause();
+	flag_d = 0;
 
 	// 選択した数字の表示板描画
 	for (var i = 0; i < gamemode; i++) {
@@ -141,10 +145,10 @@ function gameplayCanvas(num, ans_) {
 	}
 
 	if (gamemode == 3 || gamemode == 4) {
-    bgm1.currentTime = 0;
+		bgm1.currentTime = 0;
 		bgm1.play();
 	} else {
-    bgm2.currentTime = 0;
+		bgm2.currentTime = 0;
 		bgm2.play();
 	}
 
@@ -261,6 +265,24 @@ function select_num(select_) {
 	timeUpdate();
 }
 
+function ruleCanvas() {
+	draw_roundRect(50, 80, 550, 530, 10, "white", "black", "gameruleCanvas");
+	draw_roundRect(570, 50, 60, 60, 31, "red", "black", "gameruleCanvas");
+	draw_filltext("コンピュータが決めた数字を","32px gothic","black",100,150,"gameruleCanvas");
+	draw_filltext("予想するゲームです。","32px gothic","black",100,190,"gameruleCanvas");
+	draw_filltext("HIT","32px gothic","black",100,240,"gameruleCanvas");
+	draw_filltext("同じ数字が同じ場所にある","32px gothic","black",130,280,"gameruleCanvas");
+	draw_filltext("BROW","32px gothic","black",100,320,"gameruleCanvas");
+	draw_filltext("同じ数字が違う場所にある","32px gothic","black",130,360,"gameruleCanvas");
+	var logo_src = "img/playing.png";
+	logo_image = loadImage(logo_src);
+	logo_image.onload = function () {
+		r_ctx.drawImage(logo_image, 340, 390, 210, 200);
+	};
+	draw_line(615, 65, 585, 95, 4, "black", "gameruleCanvas");
+	draw_line(585, 65, 615, 95, 4, "black", "gameruleCanvas");
+}
+
 function hitblow(hit_, blow_) {
 	h_ctx.clearRect(0, 0, 650, 650);
 	var hit = hit_;
@@ -305,7 +327,7 @@ function gametimedraw() {
 		"gametime"
 	);
 	draw_filltext("秒", "30px gothic", "red", 240, 600, "gametime");
-  draw_line(
+	draw_line(
 		75,
 		630,
 		75 + 4 * 120,
@@ -314,37 +336,37 @@ function gametimedraw() {
 		"rgb(255,255,255,0.8)",
 		"gametime"
 	);
-  if(time_count>60){
-    draw_line(
-		75,
-		630,
-		75 + 4 * (120 - time_count),
-		630,
-		12,
-		"rgb(0,200,30,0.6)",
-		"gametime"
-	);
-  }else if(time_count>20){
-    draw_line(
-      75,
-      630,
-      75 + 4 * (120 - time_count),
-      630,
-      12,
-      "rgb(255,128,0,0.6)",
-      "gametime"
-    );
-  }else{
-    draw_line(
-      75,
-      630,
-      75 + 4 * (120 - time_count),
-      630,
-      12,
-      "rgb(255,0,0,0.6)",
-      "gametime"
-    );
-  }
+	if (time_count > 60) {
+		draw_line(
+			75,
+			630,
+			75 + 4 * (120 - time_count),
+			630,
+			12,
+			"rgb(0,200,30,0.6)",
+			"gametime"
+		);
+	} else if (time_count > 20) {
+		draw_line(
+			75,
+			630,
+			75 + 4 * (120 - time_count),
+			630,
+			12,
+			"rgb(255,128,0,0.6)",
+			"gametime"
+		);
+	} else {
+		draw_line(
+			75,
+			630,
+			75 + 4 * (120 - time_count),
+			630,
+			12,
+			"rgb(255,0,0,0.6)",
+			"gametime"
+		);
+	}
 
 	if (time_count < 0) {
 		flag_d = 1;
@@ -379,8 +401,8 @@ function resultCanvas(result_) {
 		draw_filltext("TIME UP!!", "100px gothic", "red", 75, 150, "game");
 		draw_filltext("ANSWER:", "60px gothic", "black", 180, 250, "game");
 
-    bgm5.currentTime = 0;
-    bgm5.play();
+		bgm5.currentTime = 0;
+		bgm5.play();
 
 		for (var i = 0; i < gamemode; i++) {
 			if (gamemode == 3) {
@@ -455,8 +477,8 @@ function resultCanvas(result_) {
 		);
 		draw_filltext("TOPへ戻る", "50px gothic", "white", 200, 570, "game");
 	} else if (result == "success") {
-    bgm3.currentTime = 0;
-    bgm3.play();
+		bgm3.currentTime = 0;
+		bgm3.play();
 		draw_filltext("CLEAR!!", "100px gothic", "red", 120, 150, "game");
 		draw_filltext(
 			"TIME:" + (120 - time_s).toFixed(3) + "秒",
@@ -650,7 +672,34 @@ function draw_roundRect(
 		n_ctx.closePath();
 		n_ctx.stroke();
 		n_ctx.fill();
-	} else {
+	} else if (canvas_n == "gameruleCanvas") {
+		r_ctx.beginPath();
+		r_ctx.lineWidth = 5;
+		r_ctx.strokeStyle = s_color;
+		r_ctx.fillStyle = f_color;
+		r_ctx.moveTo(x, y + radius);
+		r_ctx.arc(
+			x + radius,
+			y + height - radius,
+			radius,
+			Math.PI,
+			Math.PI * (1 / 2),
+			true
+		);
+		r_ctx.arc(
+			x + width - radius,
+			y + height - radius,
+			radius,
+			Math.PI * (1 / 2),
+			0,
+			1
+		);
+		r_ctx.arc(x + width - radius, y + radius, radius, 0, Math.PI * (3 / 2), 1);
+		r_ctx.arc(x + radius, y + radius, radius, Math.PI * (3 / 2), Math.PI, 1);
+		r_ctx.closePath();
+		r_ctx.stroke();
+		r_ctx.fill();
+	}else {
 		h_ctx.beginPath();
 		h_ctx.lineWidth = 5;
 		h_ctx.strokeStyle = s_color;
@@ -714,6 +763,14 @@ function draw_line(start_x, start_y, stop_x, stop_y, width, s_style, canvas_n) {
 		h_ctx.lineTo(stop_x, stop_y);
 		h_ctx.closePath();
 		h_ctx.stroke();
+	} else if (canvas_n == "gameruleCanvas") {
+		r_ctx.strokeStyle = s_style;
+		r_ctx.lineWidth = width;
+		r_ctx.beginPath();
+		r_ctx.moveTo(start_x, start_y);
+		r_ctx.lineTo(stop_x, stop_y);
+		r_ctx.closePath();
+		r_ctx.stroke();
 	} else {
 		t_ctx.strokeStyle = s_style;
 		t_ctx.lineWidth = width;
@@ -743,7 +800,11 @@ function draw_filltext(word, fontstyle, fillstyle, x, y, canvas_n) {
 		h_ctx.fillStyle = fillstyle;
 		h_ctx.font = fontstyle;
 		h_ctx.fillText(word, x, y);
-	} else {
+	} else if (canvas_n == "gameruleCanvas") {
+		r_ctx.fillStyle = fillstyle;
+		r_ctx.font = fontstyle;
+		r_ctx.fillText(word, x, y);
+	}else {
 		t_ctx.textAlign = "center";
 		t_ctx.fillStyle = fillstyle;
 		t_ctx.font = fontstyle;
@@ -816,11 +877,22 @@ window.onload = function () {
 
 	t_ctx.scale(scale, scale);
 
+	var r_canvas = $("gameruleCanvas");
+	r_ctx = r_canvas.getContext("2d");
+
+	r_canvas.style.width = size + "px";
+	r_canvas.style.height = size + "px";
+
+	r_canvas.width = size * scale;
+	r_canvas.height = size * scale;
+
+	r_ctx.scale(scale, scale);
+
 	bgm1 = document.querySelector("#gamemusic1");
 	bgm2 = document.querySelector("#gamemusic2");
-  bgm3 = document.querySelector("#gamemusic3");
-  bgm4 = document.querySelector("#gamemusic4");
-  bgm5 = document.querySelector("#gamemusic5");
+	bgm3 = document.querySelector("#gamemusic3");
+	bgm4 = document.querySelector("#gamemusic4");
+	bgm5 = document.querySelector("#gamemusic5");
 	sound2 = document.querySelector("#gamesound2");
 	sound3 = document.querySelector("#gamesound3");
 
