@@ -183,7 +183,7 @@ function check_coord(x, y) {
             sound4.currentTime = 0;
             sound4.play();
             var temp="https://twitter.com/share?ref_src=twsrc%5Etfw&text=";
-            window.open(temp+String(get_time())+"秒でクリア！","_blank");
+            window.open(temp+"Hit and Blow["+digit+"桁]を"+String(get_time())+"秒でクリアしました！Hit and Blowを遊ぶ場合はこちらから：","_blank");
         }
     } else if(flag===3){
         if(eval_Ineq(174.0,476.0,x)&&eval_Ineq(499.0,601.0,y)){
