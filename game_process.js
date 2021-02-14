@@ -155,7 +155,6 @@ function check_coord(x, y) {
             startCanvas();
         }
     }
-
 }
 
 window.addEventListener("load", function () {
