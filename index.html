@@ -10,15 +10,15 @@
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- 背景描画 -->
-  <script src="game_background.js" charset="UTF-8"></script>
+  <script src="js/game_background.js" charset="UTF-8"></script>
   <!-- ゲーム画面描画 -->
-  <script src="game_canvas.js" charset="UTF-8"></script>
+  <script src="js/game_canvas.js" charset="UTF-8"></script>
   <!-- ゲーム処理 -->
-  <script src="game_process.js" charset="UTF-8"></script>
+  <script src="js/game_process.js" charset="UTF-8"></script>
   <!-- ゲーム処理(時間) -->
-  <script src="game_timer.js" charset="UTF-8"></script>
+  <script src="js/game_timer.js" charset="UTF-8"></script>
   <!-- 音量調整処理 -->
-  <script src="game_music.js" charset="UTF-8"></script>
+  <script src="js/game_music.js" charset="UTF-8"></script>
   <link rel="stylesheet" href="game_style.css" charset="UTF-8">
 </head>
 
@@ -38,6 +38,15 @@
   <audio id="gamemusic2" preload>
     <source src="bgm/g.wav" type="audio/wav">
   </audio>
+  <audio id="gamemusic3" preload loop>
+    <source src="bgm/n.wav" type="audio/wav">
+  </audio>
+  <audio id="gamemusic4" preload loop>
+    <source src="bgm/t.wav" type="audio/wav">
+  </audio>
+  <audio id="gamemusic5" preload loop>
+    <source src="bgm/w.wav" type="audio/wav">
+  </audio>
   <!-- 効果音ファイル読み込み -->
   <audio id="gamesound1" preload>
     <source src="sound/44.mp3" type="audio/mp3">
@@ -47,6 +56,9 @@
   </audio>
   <audio id="gamesound3" preload>
     <source src="sound/1.mp3" type="audio/mp3">
+  </audio>
+  <audio id="gamesound4" preload>
+    <source src="sound/3.mp3" type="audio/mp3">
   </audio>
 
 </body>
