@@ -827,5 +827,4 @@ window.onload = function () {
 	load_logo();
 	startCanvas();
 	animationUpdate();
-	//resultCanvas("timeup");
 };
