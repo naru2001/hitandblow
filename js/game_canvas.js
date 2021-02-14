@@ -12,7 +12,7 @@ GitHub: https://github.com/nkgw-marronnier
 //var number = [];
 var gamemode = 3;
 var ansarray = [];
-var flag_d = 0; //0->game, 1->result
+var flag_d; //0->game, 1->result
 var bgm1;
 var bgm2;
 var sound1;
@@ -116,6 +116,8 @@ function gameplayCanvas(num, ans_) {
 	gamemode = num;
 	ansarray = ans_;
 
+  flag_d = 0;
+
 	// 選択した数字の表示板描画
 	for (var i = 0; i < gamemode; i++) {
 		if (gamemode == 3) {
@@ -128,8 +130,10 @@ function gameplayCanvas(num, ans_) {
 	}
 
 	if (gamemode == 3 || gamemode == 4) {
+    bgm1.currentTime = 0;
 		bgm1.play();
 	} else {
+    bgm2.currentTime = 0;
 		bgm2.play();
 	}
 
