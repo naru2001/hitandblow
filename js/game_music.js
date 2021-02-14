@@ -4,10 +4,10 @@ function upVolume() {
     bgm3.volume = Math.min(1.0, bgm3.volume + 0.1);
     bgm4.volume = Math.min(1.0, bgm4.volume + 0.1);
     bgm5.volume = Math.min(1.0, bgm5.volume + 0.1);
-    sound1.volume = Math.min(1.0, sound2.volume + 0.1);
+    sound1.volume = Math.min(1.0, sound1.volume + 0.1);
     sound2.volume = Math.min(1.0, sound2.volume + 0.1);
-    sound3.volume = Math.min(1.0, sound2.volume + 0.1);
-    sound4.volume = Math.min(1.0, sound2.volume + 0.1);
+    sound3.volume = Math.min(1.0, sound3.volume + 0.1);
+    sound4.volume = Math.min(1.0, sound4.volume + 0.1);
     sound3.currentTime = 0;
     sound3.play();
     console.log(bgm1.volume);
