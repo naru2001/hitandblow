@@ -48,6 +48,7 @@ function full_check() {
 
 function check_coord(x, y) {
     if (flag == 0) {
+        rep_array = [];
         if (eval_Ineq(50.0, 200.0, x) && eval_Ineq(250.0, 450.0, y)) {
             starttime();
             flag = 1;
