@@ -19,6 +19,8 @@ var bgm4;
 var bgm5;
 var sound2;
 var sound3;
+var sound5;
+var sound6;
 var time_s;
 
 // DOM要素を返す
@@ -60,6 +62,10 @@ function get_time(){
 }
 // ゲーム開始画面描画
 function startCanvas() {
+  s_ctx.clearRect(0, 0, 650, 650);
+
+  load_logo();
+
 	if (bgm3.paused == false) {
 		bgm3.pause();
 	} else if (bgm5.paused == false) {
@@ -275,7 +281,7 @@ function ruleCanvas() {
 	draw_filltext("予想するゲームです。","32px gothic","black",100,190,"gameruleCanvas");
 	draw_filltext("HIT","32px gothic","black",100,240,"gameruleCanvas");
 	draw_filltext("同じ数字が同じ場所にある","32px gothic","black",130,280,"gameruleCanvas");
-	draw_filltext("BROW","32px gothic","black",100,320,"gameruleCanvas");
+	draw_filltext("BLOW","32px gothic","black",100,320,"gameruleCanvas");
 	draw_filltext("同じ数字が違う場所にある","32px gothic","black",130,360,"gameruleCanvas");
 	var logo_src = "img/playing.png";
 	logo_image = loadImage(logo_src);
@@ -291,8 +297,16 @@ function hitblow(hit_, blow_) {
 	var hit = hit_;
 	var blow = blow_;
 
-	sound2.currentTime = 0;
-	sound2.play();
+  if(hit == 0 && blow == 0){
+    sound6.currentTime = 0;
+    sound6.play();
+  }else if(hit == gamemode){
+    sound5.currentTime = 0;
+    sound5.play();
+  }else{
+    sound2.currentTime = 0;
+    sound2.play();
+  }
 
 	draw_filltext(hit, "120px gothic", "red", 60, 375, "gamehitblow");
 	draw_filltext("HIT", "60px gothic", "black", 130, 375, "gamehitblow");
@@ -702,6 +716,33 @@ function draw_roundRect(
 		r_ctx.closePath();
 		r_ctx.stroke();
 		r_ctx.fill();
+  }else if(canvas_n == "soundselect"){
+    s_ctx.beginPath();
+		s_ctx.lineWidth = 5;
+		s_ctx.strokeStyle = s_color;
+		s_ctx.fillStyle = f_color;
+		s_ctx.moveTo(x, y + radius);
+		s_ctx.arc(
+			x + radius,
+			y + height - radius,
+			radius,
+			Math.PI,
+			Math.PI * (1 / 2),
+			true
+		);
+		s_ctx.arc(
+			x + width - radius,
+			y + height - radius,
+			radius,
+			Math.PI * (1 / 2),
+			0,
+			1
+		);
+		s_ctx.arc(x + width - radius, y + radius, radius, 0, Math.PI * (3 / 2), 1);
+		s_ctx.arc(x + radius, y + radius, radius, Math.PI * (3 / 2), Math.PI, 1);
+		s_ctx.closePath();
+		s_ctx.stroke();
+		s_ctx.fill();
 	}else {
 		h_ctx.beginPath();
 		h_ctx.lineWidth = 5;
@@ -807,12 +848,79 @@ function draw_filltext(word, fontstyle, fillstyle, x, y, canvas_n) {
 		r_ctx.fillStyle = fillstyle;
 		r_ctx.font = fontstyle;
 		r_ctx.fillText(word, x, y);
+  }else if(canvas_n == "soundselect"){
+    s_ctx.fillStyle = fillstyle;
+		s_ctx.font = fontstyle;
+		s_ctx.fillText(word, x, y);
 	}else {
 		t_ctx.textAlign = "center";
 		t_ctx.fillStyle = fillstyle;
 		t_ctx.font = fontstyle;
 		t_ctx.fillText(word, x, y);
 	}
+}
+
+function draw_soundselect(){
+  draw_roundRect(
+    210,
+    83,
+    200,
+    100,
+    15,
+    "rgb(255, 128, 0, 0.8)",
+    "white",
+    "soundselect"
+  );
+
+  draw_filltext("注意", "50px gothic", "white", 260, 150, "soundselect");
+  draw_filltext("このゲームは音声が流れます.", "30px gothic", "black", 120, 280, "soundselect");
+  draw_filltext("いずれかを選択してください.", "30px gothic", "black", 120, 330, "soundselect");
+
+  draw_roundRect(
+    80,
+    400,
+    200,
+    100,
+    15,
+    "rgb(100, 200, 255, 0.8)",
+    "white",
+    "soundselect"
+  );
+  draw_roundRect(
+    350,
+    400,
+    200,
+    100,
+    15,
+    "rgb(100, 200, 255, 0.8)",
+    "white",
+    "soundselect"
+  );
+
+  draw_filltext("消音", "50px gothic", "white", 130, 470, "soundselect");
+  draw_filltext("音あり", "50px gothic", "white", 375, 470, "soundselect");
+  //startCanvas();
+}
+
+function draw_credit(){
+  draw_roundRect(50, 80, 550, 530, 10, "white", "black", "gameruleCanvas");
+	draw_roundRect(570, 50, 60, 60, 31, "red", "black", "gameruleCanvas");
+  var logo_src = "img/menu_logo.png";
+	logo_image = loadImage(logo_src);
+	logo_image.onload = function () {
+		r_ctx.drawImage(logo_image, 50, 80, 500, 150);
+	};
+	draw_filltext("ver 0.0.1","20px gothic","black",460,180,"gameruleCanvas");
+	draw_filltext("-PROGRAM-","35px gothic","black",225,250,"gameruleCanvas");
+	draw_filltext("naru2001, nkgw-marronnier","32px gothic","black",100,290,"gameruleCanvas");
+	draw_filltext("-BGM/SOUND-","35px gothic","black",200,350,"gameruleCanvas");
+	draw_filltext("nkgw-marronnier","32px gothic","black",190,390,"gameruleCanvas");
+  draw_filltext("効果音ラボ","32px gothic","black",245,430,"gameruleCanvas");
+  draw_filltext("-GitHub-","35px gothic","black",245,490,"gameruleCanvas");
+  draw_filltext("https://github.com/naru2001","25px gothic","black",140,530,"gameruleCanvas");
+  draw_filltext("https://github.com/nkgw-marronnier","25px gothic","black",90,570,"gameruleCanvas");
+	draw_line(615, 65, 585, 95, 4, "black", "gameruleCanvas");
+	draw_line(585, 65, 615, 95, 4, "black", "gameruleCanvas");
 }
 
 // 初期読み込み
@@ -891,6 +999,17 @@ window.onload = function () {
 
 	r_ctx.scale(scale, scale);
 
+  var s_canvas = $("soundselectCanvas");
+	s_ctx = s_canvas.getContext("2d");
+
+	s_canvas.style.width = size + "px";
+	s_canvas.style.height = size + "px";
+
+	s_canvas.width = size * scale;
+	s_canvas.height = size * scale;
+
+	s_ctx.scale(scale, scale);
+
 	bgm1 = document.querySelector("#gamemusic1");
 	bgm2 = document.querySelector("#gamemusic2");
 	bgm3 = document.querySelector("#gamemusic3");
@@ -898,8 +1017,11 @@ window.onload = function () {
 	bgm5 = document.querySelector("#gamemusic5");
 	sound2 = document.querySelector("#gamesound2");
 	sound3 = document.querySelector("#gamesound3");
+  sound5 = document.querySelector("#gamesound5");
+	sound6 = document.querySelector("#gamesound6");
 
-	load_logo();
-	startCanvas();
+	//load_logo();
+	//startCanvas();
+  draw_soundselect();
 	animationUpdate();
 };

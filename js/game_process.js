@@ -1,4 +1,4 @@
-var flag = 0; // 0->Menu, 1->play 2->end(成功) 3->end(失敗) 4->rule 5->volume
+var flag = 6; // 0->Menu, 1->play 2->end(成功) 3->end(失敗) 4->rule 5->volume 6->soundselect(初期)
 var digit;
 var rep_array = [];
 var ans_array = [];
@@ -91,6 +91,11 @@ function check_coord(x, y) {
         } else if (eval_Ineq(560.0, 610.0, x) && eval_Ineq(543.0, 583, y)) {
             console.log("down");
             downVolume();
+        } else if (eval_Ineq(115.0, 545.0, x) && eval_Ineq(615.0, 635, y)) {
+            sound4.currentTime = 0;
+            sound4.play();
+            draw_credit();
+            flag = 4;
         }
     } else if (flag == 1) {
         if (eval_Ineq(300.0, 380.0, x) && eval_Ineq(260.0, 340.0, y)) {
@@ -195,13 +200,24 @@ function check_coord(x, y) {
             startCanvas();
         }
     } else if(flag===4){
-        console.log(x,y);
+        //console.log(x,y);
         if(eval_Ineq(569.0,631.0,x) || eval_Ineq(49.0,111.0,y)){
             rule_del();
             flag=0;
         }
+    }else if(flag===6){
+        if(eval_Ineq(92.0,285.0,x)&&eval_Ineq(408.0,500.0,y)){
+            sound4.currentTime = 0;
+            mute_sound();
+            flag=0;
+            startCanvas();
+        }else if(eval_Ineq(360.0,555.0,x)&&eval_Ineq(406.0,503.0,y)){
+            sound4.currentTime = 0;
+            sound4.play();
+            flag=0;
+            startCanvas();
+        }
     }
-
 }
 
 window.addEventListener("load", function () {
