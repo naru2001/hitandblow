@@ -176,19 +176,20 @@ function check_coord(x, y) {
         full_check();
         console.log(rep_array, ans_array);
     } else if (flag === 2){
-        if(eval_Ineq(74.0,376.0,x) && eval_Ineq(499.0,601.0,y)){
+        if(eval_Ineq(49.0,321.0,x) && eval_Ineq(499.0,601.0,y)){
             sound4.currentTime = 0;
             sound4.play();
             flag=0;
             canvas_reset(0,0,650,650);
             load_logo();
             startCanvas();
-        }
-        else if(eval_Ineq(419.0,551.0,x)&&eval_Ineq(499.0,601.0,y)){
+        } else if(eval_Ineq(349.0,451.0,x)&&eval_Ineq(499.0,601.0,y)){
             sound4.currentTime = 0;
             sound4.play();
             var temp="https://twitter.com/share?ref_src=twsrc%5Etfw&text=";
             window.open(temp+"Hit and Blow["+digit+"桁]を"+String(get_time())+"秒でクリアしました！Hit and Blowを遊ぶ場合はこちらから：","_blank");
+        } else if(eval_Ineq(479.0,591.0,x)&&eval_Ineq(499.0,601.0,y)){
+            console.log("rank");
         }
     } else if(flag===3){
         if(eval_Ineq(174.0,476.0,x)&&eval_Ineq(499.0,601.0,y)){
