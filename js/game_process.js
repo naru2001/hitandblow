@@ -75,7 +75,7 @@ function check_coord(x, y) {
             ans_array = make_number(5);
             gameplayCanvas(5, ans_array);
         } else if (eval_Ineq(49.0, 251.0, x) && eval_Ineq(509.0, 591.0, y)) {
-          sound4.currentTime = 0;
+            sound4.currentTime = 0;
             sound4.play();
             ruleCanvas();
             //console.log("rule");
@@ -168,54 +168,55 @@ function check_coord(x, y) {
             rep_array.push(0);
             select_num(rep_array);
             flag = 1;
-        } else if(eval_Ineq(594.0,631.0,x) && eval_Ineq(542.0,579.0,y)){
+        } else if (eval_Ineq(594.0, 631.0, x) && eval_Ineq(542.0, 579.0, y)) {
             upVolume();
-        } else if(eval_Ineq(594.0,631.0,x) && eval_Ineq(582.0,619.0,y)){
+        } else if (eval_Ineq(594.0, 631.0, x) && eval_Ineq(582.0, 619.0, y)) {
             downVolume();
         }
         full_check();
         console.log(rep_array, ans_array);
-    } else if (flag === 2){
-        if(eval_Ineq(49.0,321.0,x) && eval_Ineq(499.0,601.0,y)){
+    } else if (flag === 2) {
+        if (eval_Ineq(49.0, 321.0, x) && eval_Ineq(499.0, 601.0, y)) {
             sound4.currentTime = 0;
             sound4.play();
-            flag=0;
-            canvas_reset(0,0,650,650);
+            flag = 0;
+            canvas_reset(0, 0, 650, 650);
             load_logo();
             startCanvas();
-        } else if(eval_Ineq(349.0,451.0,x)&&eval_Ineq(499.0,601.0,y)){
+        } else if (eval_Ineq(349.0, 451.0, x) && eval_Ineq(499.0, 601.0, y)) {
             sound4.currentTime = 0;
             sound4.play();
-            var temp="https://twitter.com/share?ref_src=twsrc%5Etfw&text=";
-            window.open(temp+"Hit and Blow["+digit+"桁]を"+String(get_time())+"秒でクリアしました！Hit and Blowを遊ぶ場合はこちらから：","_blank");
-        } else if(eval_Ineq(479.0,591.0,x)&&eval_Ineq(499.0,601.0,y)){
+            var temp = "https://twitter.com/share?ref_src=twsrc%5Etfw&text=";
+            window.open(temp + "Hit and Blow[" + digit + "桁]を" + String(get_time()) + "秒でクリアしました！Hit and Blowを遊ぶ場合はこちらから：", "_blank");
+        } else if (eval_Ineq(479.0, 591.0, x) && eval_Ineq(499.0, 601.0, y)) {
             console.log("rank");
+            jQuery.noConflict();
         }
-    } else if(flag===3){
-        if(eval_Ineq(174.0,476.0,x)&&eval_Ineq(499.0,601.0,y)){
+    } else if (flag === 3) {
+        if (eval_Ineq(174.0, 476.0, x) && eval_Ineq(499.0, 601.0, y)) {
             sound4.currentTime = 0;
             sound4.play();
-            flag=0;
-            canvas_reset(0,0,650,650);
+            flag = 0;
+            canvas_reset(0, 0, 650, 650);
             load_logo();
             startCanvas();
         }
-    } else if(flag===4){
+    } else if (flag === 4) {
         //console.log(x,y);
-        if(eval_Ineq(569.0,631.0,x) || eval_Ineq(49.0,111.0,y)){
+        if (eval_Ineq(569.0, 631.0, x) || eval_Ineq(49.0, 111.0, y)) {
             rule_del();
-            flag=0;
+            flag = 0;
         }
-    }else if(flag===6){
-        if(eval_Ineq(92.0,285.0,x)&&eval_Ineq(408.0,500.0,y)){
+    } else if (flag === 6) {
+        if (eval_Ineq(92.0, 285.0, x) && eval_Ineq(408.0, 500.0, y)) {
             sound4.currentTime = 0;
             mute_sound();
-            flag=0;
+            flag = 0;
             startCanvas();
-        }else if(eval_Ineq(360.0,555.0,x)&&eval_Ineq(406.0,503.0,y)){
+        } else if (eval_Ineq(360.0, 555.0, x) && eval_Ineq(406.0, 503.0, y)) {
             sound4.currentTime = 0;
             sound4.play();
-            flag=0;
+            flag = 0;
             startCanvas();
         }
     }
