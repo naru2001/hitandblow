@@ -10,5 +10,5 @@ nkgw-marronnier, 効果音ラボ
 http://www.domei-sha.com/hitandblow
 
 ### COPYRIGHT
-naru2001:https://github.com/naru2001<br>
-nkgw-marronnier:https://github.com/nkgw-marronnier
+naru2001->https://github.com/naru2001<br>
+nkgw-marronnier->https://github.com/nkgw-marronnier
