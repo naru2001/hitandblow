@@ -11,7 +11,9 @@ GitHub: https://github.com/nkgw-marronnier
 
 /* ゲーム総合描画領域 */
 .game {
+  width: 650px;
   position: relative;
+  margin:0 auto;
 }
 
 /* 背景描画領域 */
