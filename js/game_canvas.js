@@ -53,18 +53,18 @@ function canvas_reset(x, y, dx, dy) {
 	t_ctx.clearRect(x, y, dx, dy);
 }
 
-function rule_del() {
-	r_ctx.clearRect(0, 0, 650, 650);
+function rule_del(){
+	r_ctx.clearRect(0,0,650,650);
 }
 
-function get_time() {
+function get_time(){
 	return (120 - time_s).toFixed(3);
 }
 // ゲーム開始画面描画
 function startCanvas() {
-	s_ctx.clearRect(0, 0, 650, 650);
+  s_ctx.clearRect(0, 0, 650, 650);
 
-	load_logo();
+  load_logo();
 
 	if (bgm3.paused == false) {
 		bgm3.pause();
@@ -277,12 +277,12 @@ function select_num(select_) {
 function ruleCanvas() {
 	draw_roundRect(50, 80, 550, 530, 10, "white", "black", "gameruleCanvas");
 	draw_roundRect(570, 50, 60, 60, 31, "red", "black", "gameruleCanvas");
-	draw_filltext("コンピュータが決めた数字を", "32px gothic", "black", 100, 150, "gameruleCanvas");
-	draw_filltext("予想するゲームです。", "32px gothic", "black", 100, 190, "gameruleCanvas");
-	draw_filltext("HIT", "32px gothic", "black", 100, 240, "gameruleCanvas");
-	draw_filltext("同じ数字が同じ場所にある", "32px gothic", "black", 130, 280, "gameruleCanvas");
-	draw_filltext("BLOW", "32px gothic", "black", 100, 320, "gameruleCanvas");
-	draw_filltext("同じ数字が違う場所にある", "32px gothic", "black", 130, 360, "gameruleCanvas");
+	draw_filltext("コンピュータが決めた数字を","32px gothic","black",100,150,"gameruleCanvas");
+	draw_filltext("予想するゲームです。","32px gothic","black",100,190,"gameruleCanvas");
+	draw_filltext("HIT","32px gothic","black",100,240,"gameruleCanvas");
+	draw_filltext("同じ数字が同じ場所にある","32px gothic","black",130,280,"gameruleCanvas");
+	draw_filltext("BLOW","32px gothic","black",100,320,"gameruleCanvas");
+	draw_filltext("同じ数字が違う場所にある","32px gothic","black",130,360,"gameruleCanvas");
 	var logo_src = "img/playing.png";
 	logo_image = loadImage(logo_src);
 	logo_image.onload = function () {
@@ -297,16 +297,16 @@ function hitblow(hit_, blow_) {
 	var hit = hit_;
 	var blow = blow_;
 
-	if (hit == 0 && blow == 0) {
-		sound6.currentTime = 0;
-		sound6.play();
-	} else if (hit == gamemode) {
-		sound5.currentTime = 0;
-		sound5.play();
-	} else {
-		sound2.currentTime = 0;
-		sound2.play();
-	}
+  if(hit == 0 && blow == 0){
+    sound6.currentTime = 0;
+    sound6.play();
+  }else if(hit == gamemode){
+    sound5.currentTime = 0;
+    sound5.play();
+  }else{
+    sound2.currentTime = 0;
+    sound2.play();
+  }
 
 	draw_filltext(hit, "120px gothic", "red", 60, 375, "gamehitblow");
 	draw_filltext("HIT", "60px gothic", "black", 130, 375, "gamehitblow");
@@ -567,19 +567,40 @@ function resultCanvas(result_) {
 				ansarray_n--;
 			}
 		}
-		draw_roundRect(50, 500, 270, 100, 15, "rgb(100, 200, 255, 0.8)", "white", "game");
-		draw_roundRect(350, 500, 100, 100, 15, "white", "rgb(100, 200, 255, 0.8)", "game");
-		draw_roundRect(480, 500, 100, 100, 15, "white", "rgb(100, 200, 255, 0.8)", "game");
-		draw_filltext("TOPへ戻る", "48px gothic", "white", 65, 570, "game");
-		logo_image1 = loadImage("img/twiShare.png");
-		logo_image2 = loadImage("img/trophy_gold.png");
-		logo_image1.onload = function () {
-			h_ctx.drawImage(logo_image1, 358, 513, 80, 70);
-		};
-		logo_image2.onload = function () {
-			h_ctx.drawImage(logo_image2, 498, 518, 65, 65);
-		};
-		
+		draw_roundRect(
+			75,
+			500,
+			130,
+			100,
+			15,
+			"rgb(100, 200, 255, 0.8)",
+			"white",
+			"game"
+		);
+    draw_roundRect(
+			250,
+			500,
+			130,
+			100,
+			15,
+			"rgb(100, 200, 255, 0.8)",
+			"white",
+			"game"
+		);
+		draw_roundRect(
+			420,
+			500,
+			130,
+			100,
+			15,
+			"rgb(100, 200, 255, 0.8)",
+			"white",
+			"game"
+		);
+
+		draw_filltext("戻る", "50px gothic", "white", 90, 570, "game");
+		draw_filltext("共有", "50px gothic", "white", 265, 570, "game");
+    draw_filltext("登録", "50px gothic", "white", 435, 570, "game");
 	}
 }
 
@@ -706,8 +727,8 @@ function draw_roundRect(
 		r_ctx.closePath();
 		r_ctx.stroke();
 		r_ctx.fill();
-	} else if (canvas_n == "soundselect") {
-		s_ctx.beginPath();
+  }else if(canvas_n == "soundselect"){
+    s_ctx.beginPath();
 		s_ctx.lineWidth = 5;
 		s_ctx.strokeStyle = s_color;
 		s_ctx.fillStyle = f_color;
@@ -733,7 +754,7 @@ function draw_roundRect(
 		s_ctx.closePath();
 		s_ctx.stroke();
 		s_ctx.fill();
-	} else {
+	}else {
 		h_ctx.beginPath();
 		h_ctx.lineWidth = 5;
 		h_ctx.strokeStyle = s_color;
@@ -838,11 +859,11 @@ function draw_filltext(word, fontstyle, fillstyle, x, y, canvas_n) {
 		r_ctx.fillStyle = fillstyle;
 		r_ctx.font = fontstyle;
 		r_ctx.fillText(word, x, y);
-	} else if (canvas_n == "soundselect") {
-		s_ctx.fillStyle = fillstyle;
+  }else if(canvas_n == "soundselect"){
+    s_ctx.fillStyle = fillstyle;
 		s_ctx.font = fontstyle;
 		s_ctx.fillText(word, x, y);
-	} else {
+	}else {
 		t_ctx.textAlign = "center";
 		t_ctx.fillStyle = fillstyle;
 		t_ctx.font = fontstyle;
@@ -850,65 +871,65 @@ function draw_filltext(word, fontstyle, fillstyle, x, y, canvas_n) {
 	}
 }
 
-function draw_soundselect() {
-	draw_roundRect(
-		210,
-		83,
-		200,
-		100,
-		15,
-		"rgb(255, 128, 0, 0.8)",
-		"white",
-		"soundselect"
-	);
+function draw_soundselect(){
+  draw_roundRect(
+    210,
+    83,
+    200,
+    100,
+    15,
+    "rgb(255, 128, 0, 0.8)",
+    "white",
+    "soundselect"
+  );
 
-	draw_filltext("注意", "50px gothic", "white", 260, 150, "soundselect");
-	draw_filltext("このゲームは音声が流れます.", "30px gothic", "black", 120, 280, "soundselect");
-	draw_filltext("いずれかを選択してください.", "30px gothic", "black", 120, 330, "soundselect");
+  draw_filltext("注意", "50px gothic", "white", 260, 150, "soundselect");
+  draw_filltext("このゲームは音声が流れます.", "30px gothic", "black", 120, 280, "soundselect");
+  draw_filltext("いずれかを選択してください.", "30px gothic", "black", 120, 330, "soundselect");
 
-	draw_roundRect(
-		80,
-		400,
-		200,
-		100,
-		15,
-		"rgb(100, 200, 255, 0.8)",
-		"white",
-		"soundselect"
-	);
-	draw_roundRect(
-		350,
-		400,
-		200,
-		100,
-		15,
-		"rgb(100, 200, 255, 0.8)",
-		"white",
-		"soundselect"
-	);
+  draw_roundRect(
+    80,
+    400,
+    200,
+    100,
+    15,
+    "rgb(100, 200, 255, 0.8)",
+    "white",
+    "soundselect"
+  );
+  draw_roundRect(
+    350,
+    400,
+    200,
+    100,
+    15,
+    "rgb(100, 200, 255, 0.8)",
+    "white",
+    "soundselect"
+  );
 
-	draw_filltext("消音", "50px gothic", "white", 130, 470, "soundselect");
-	draw_filltext("音あり", "50px gothic", "white", 375, 470, "soundselect");
-	//startCanvas();
+  draw_filltext("消音", "50px gothic", "white", 130, 470, "soundselect");
+  draw_filltext("音あり", "50px gothic", "white", 375, 470, "soundselect");
+  //startCanvas();
 }
 
-function draw_credit() {
-	draw_roundRect(50, 80, 550, 530, 10, "white", "black", "gameruleCanvas");
+function draw_credit(){
+  draw_roundRect(50, 80, 550, 530, 10, "white", "black", "gameruleCanvas");
 	draw_roundRect(570, 50, 60, 60, 31, "red", "black", "gameruleCanvas");
-	var logo_src = "img/menu_logo.png";
+  var logo_src = "img/menu_logo.png";
 	logo_image = loadImage(logo_src);
 	logo_image.onload = function () {
 		r_ctx.drawImage(logo_image, 50, 80, 500, 150);
 	};
-	draw_filltext("ver 0.0.1", "20px gothic", "black", 460, 180, "gameruleCanvas");
-	draw_filltext("-PROGRAM-", "35px gothic", "black", 225, 250, "gameruleCanvas");
-	draw_filltext("naru2001, nkgw-marronnier", "32px gothic", "black", 100, 290, "gameruleCanvas");
-	draw_filltext("-BGM/SOUND-", "35px gothic", "black", 200, 350, "gameruleCanvas");
-	draw_filltext("nkgw-marronnier", "32px gothic", "black", 190, 390, "gameruleCanvas");
-	draw_filltext("効果音ラボ", "32px gothic", "black", 245, 430, "gameruleCanvas");
-	draw_filltext("-GitHub-", "35px gothic", "black", 245, 490, "gameruleCanvas");
-	draw_filltext("https://github.com/naru2001", "25px gothic", "black", 140, 530, "gameruleCanvas");
-	draw_filltext("https://github.com/nkgw-marronnier", "25px gothic", "black", 90, 570, "gameruleCanvas");
+	draw_filltext("ver 0.0.1","20px gothic","black",460,180,"gameruleCanvas");
+	draw_filltext("-PROGRAM-","35px gothic","black",225,250,"gameruleCanvas");
+	draw_filltext("naru2001, nkgw-marronnier","32px gothic","black",100,290,"gameruleCanvas");
+	draw_filltext("-BGM/SOUND-","35px gothic","black",200,350,"gameruleCanvas");
+	draw_filltext("nkgw-marronnier","32px gothic","black",190,390,"gameruleCanvas");
+  draw_filltext("効果音ラボ","32px gothic","black",245,430,"gameruleCanvas");
+  draw_filltext("-GitHub-","35px gothic","black",245,490,"gameruleCanvas");
+  draw_filltext("https://github.com/naru2001","25px gothic","black",140,530,"gameruleCanvas");
+  draw_filltext("https://github.com/nkgw-marronnier","25px gothic","black",90,570,"gameruleCanvas");
 	draw_line(615, 65, 585, 95, 4, "black", "gameruleCanvas");
 	draw_line(585, 65, 615, 95, 4, "black", "gameruleCanvas");
 }
@@ -989,7 +1010,7 @@ window.onload = function () {
 
 	r_ctx.scale(scale, scale);
 
-	var s_canvas = $("soundselectCanvas");
+  var s_canvas = $("soundselectCanvas");
 	s_ctx = s_canvas.getContext("2d");
 
 	s_canvas.style.width = size + "px";
@@ -1007,11 +1028,9 @@ window.onload = function () {
 	bgm5 = document.querySelector("#gamemusic5");
 	sound2 = document.querySelector("#gamesound2");
 	sound3 = document.querySelector("#gamesound3");
-	sound5 = document.querySelector("#gamesound5");
+  sound5 = document.querySelector("#gamesound5");
 	sound6 = document.querySelector("#gamesound6");
 
-	//load_logo();
-	//startCanvas();
-	draw_soundselect();
+  draw_soundselect();
 	animationUpdate();
 };
